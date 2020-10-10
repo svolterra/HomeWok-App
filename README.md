@@ -1,4 +1,4 @@
-# My Personal Project
+# The HomeWok Application
 
 ## A subtitle
 
