@@ -5,11 +5,11 @@ import java.util.List;
 
 //Represents a recipe with a name, list of ingredients, list of directions to make recipe,
 // and whether user will make recipe again or not
-public class Recipe extends ListElements {
+public class Recipe extends Element {
     private List<Ingredient> ingredients;
     private boolean makeAgain;
 
-    //EFFECTS: Constructs a recipe with given name and empty description
+    //EFFECTS: Constructs a recipe with given name, empty description and ingredient list
     public Recipe(String name) {
         super(name);
         ingredients = new ArrayList<>();

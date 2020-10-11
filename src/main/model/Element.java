@@ -3,11 +3,11 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class ListElements {
+public class Element {
     protected String name;
     protected List<String> description;
 
-    public ListElements(String name) {
+    public Element(String name) {
         this.name = name;
         description = new ArrayList<>();
     }

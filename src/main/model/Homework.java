@@ -1,9 +1,6 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Homework extends ListElements {
+public class Homework extends Element {
     private boolean homeworkDone;
     private String subject;
     private DueDate dueDate;

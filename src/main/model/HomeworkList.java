@@ -3,7 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeworkList {
+//A list of homework assignments
+public class HomeworkList implements ElementList {
     private List<Homework> homeworkList;
 
     //EFFECTS: Constructs an empty list of homework
@@ -11,40 +12,56 @@ public class HomeworkList {
         homeworkList = new ArrayList<>();
     }
 
-    //EFFECTS: returns list of homework assignments so far
-    public List<String> getListOfHomeworkNames() {
-        List<String> finalHomeworkList = new ArrayList<>();
-        for (Homework h: homeworkList) {
-            finalHomeworkList.add(h.getName());
-        }
-        return finalHomeworkList;
-    }
-
     //MODIFIES: this
     //EFFECTS: adds homework assignment to list of assignments
-    public void addHomework(Homework h) {
-        homeworkList.add(h);
+    public void addHomework(String subject, String name) {
+        homeworkList.add(new Homework(subject, name));
+    }
+
+
+    //EFFECTS: returns size of homework list
+    public int size() {
+        return  homeworkList.size();
+    }
+
+    //EFFECTS: returns element at given index
+    public Homework get(int index) {
+        Homework atIndex = homeworkList.get(index);
+        return atIndex;
     }
 
     //MODIFIES: this
-    //EFFECTS: removes given homework assignment from list of assignments
-    public void removeHomework(Homework h) {
-        homeworkList.remove(h);
+    //EFFECTS: removes given element from list of list elements
+    public void remove(Element e) {
+        homeworkList.remove(e);
     }
 
-    //MODIFIES:this
-    //EFFECTS: removes homework assignment at given index from homework list
-    public void removeHomeworkAtIndex(int i) {
-        Homework homeworkToRemove = homeworkList.get(i);
-        homeworkList.remove(homeworkToRemove);
+
+    //EFFECTS: returns true if list  contains given element, false otherwise
+    public boolean contain(Element e) {
+        return homeworkList.contains(e);
     }
 
-    //EFFECTS: returns true if list of homework assignments contains given list, false otherwise
-    public boolean doesListContainHomework(Homework h) {
-        boolean doesListContain = homeworkList.contains(h);
-        return doesListContain;
 
+    //REQUIRES: i > 0
+    //MODIFIES: this
+    //EFFECTS: removes element at given index from list
+    public void removeAtIndex(int i) {
+        Homework elementToRemove = homeworkList.get(i);
+        homeworkList.remove(elementToRemove);
     }
+
+    //EFFECTS: returns list of homework assignments so far
+    public List<String> getListOfElementTitles() {
+        List<String> finalElementList = new ArrayList<>();
+        for (Homework h: homeworkList) {
+            finalElementList.add(h.getSubject());
+        }
+        return finalElementList;
+    }
+
+
 
 
 }
+
