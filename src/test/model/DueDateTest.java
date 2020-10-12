@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//Tests for the DueDate class
 public class DueDateTest {
     private DueDate dateTest;
 

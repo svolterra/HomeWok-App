@@ -7,7 +7,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class RecipeTest {
+//Tests for the recipe class
+public class RecipeTest {
     private Recipe testRecipe;
     private List<Ingredient> testIngredients;
     private List<String> testDescription;
@@ -18,7 +19,6 @@ class RecipeTest {
         testRecipe = new Recipe("Cookies");
         testIngredients = testRecipe.getIngredients();
         testDescription = testRecipe.getDescription();
-
     }
 
     @Test

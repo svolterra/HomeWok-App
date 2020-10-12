@@ -7,6 +7,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+//Tests for the RecipeList class
 public class RecipeListTest {
     private RecipeList recipeList;
 
@@ -16,36 +17,36 @@ public class RecipeListTest {
     }
 
     @Test
-    public void testConstructor(){
+    public void testConstructor() {
         assertEquals(0, recipeList.size());
     }
 
     @Test
-    public void testAddOneElement(){
+    public void testAddOneElement() {
         recipeList.addRecipe("Brownies");
 
         Element recipe0 = recipeList.get(0);
 
-        assertEquals("Brownies",recipe0.getName() );
+        assertEquals("Brownies", recipe0.getName());
         assertEquals(1, recipeList.size());
         assertEquals(0, recipe0.getDescription().size());
     }
 
     @Test
-    public void testAddSeveralElements(){
+    public void testAddSeveralElements() {
         recipeList.addRecipe("Brownies");
         recipeList.addRecipe("Cookies");
         recipeList.addRecipe("Cake");
 
         assertEquals(3, recipeList.size());
 
-        Recipe recipe0 = recipeList.get(0);
-        Recipe recipe1 = recipeList.get(1);
-        Recipe recipe2 = recipeList.get(2);
+        Recipe brownies = recipeList.get(0);
+        Recipe cookies = recipeList.get(1);
+        Recipe cake = recipeList.get(2);
 
-        assertEquals("Brownies", recipe0.getName());
-        assertEquals("Cookies", recipe1.getName());
-        assertEquals("Cake", recipe2.getName());
+        assertEquals("Brownies", brownies.getName());
+        assertEquals("Cookies", cookies.getName());
+        assertEquals("Cake", cake.getName());
     }
 
     @Test
@@ -78,18 +79,18 @@ public class RecipeListTest {
         testRecipe.addIngredient("Cocoa powder", 75);
 
         List<Ingredient> ingredients = testRecipe.getIngredients();
-        Ingredient ingredient0 = ingredients.get(0);
-        Ingredient ingredient1 = ingredients.get(1);
-        Ingredient ingredient2 = ingredients.get(2);
+        Ingredient sugar = ingredients.get(0);
+        Ingredient butter = ingredients.get(1);
+        Ingredient cocoaPowder = ingredients.get(2);
 
         assertEquals(3, ingredients.size());
-        assertEquals("Sugar", ingredient0.getIngredientName());
-        assertEquals("Butter", ingredient1.getIngredientName());
-        assertEquals("Cocoa powder", ingredient2.getIngredientName());
+        assertEquals("Sugar", sugar.getIngredientName());
+        assertEquals("Butter", butter.getIngredientName());
+        assertEquals("Cocoa powder", cocoaPowder.getIngredientName());
 
-        assertEquals(249, ingredient0.getAmountNeeded());
-        assertEquals(71, ingredient1.getAmountNeeded());
-        assertEquals(75, ingredient2.getAmountNeeded());
+        assertEquals(249, sugar.getAmountNeeded());
+        assertEquals(71, butter.getAmountNeeded());
+        assertEquals(75, cocoaPowder.getAmountNeeded());
     }
 
     @Test
@@ -105,7 +106,7 @@ public class RecipeListTest {
     }
 
     @Test
-    public void testContains(){
+    public void testContains() {
         recipeList.addRecipe("Brownies");
         Recipe brownies = recipeList.get(0);
 
@@ -113,7 +114,7 @@ public class RecipeListTest {
     }
 
     @Test
-    public void testRemoveAtIndex(){
+    public void testRemoveAtIndex() {
         recipeList.addRecipe("Brownies");
         recipeList.addRecipe("Cookies");
         recipeList.addRecipe("Pavlova");
@@ -126,7 +127,7 @@ public class RecipeListTest {
     }
 
     @Test
-    public void testGetListOfElementTitles(){
+    public void testGetListOfElementTitles() {
         recipeList.addRecipe("Brownies");
         recipeList.addRecipe("Cookies");
         recipeList.addRecipe("Cake");

@@ -1,5 +1,6 @@
 package model;
 
+//Represents a homework assignment with a subject, name, description, and whether it has been completed or not
 public class Homework extends Element {
     private boolean homeworkDone;
     private String subject;
@@ -11,7 +12,6 @@ public class Homework extends Element {
         super(name);
         this.subject = subject;
         homeworkDone = false;
-
     }
 
     //MODIFIES: this
@@ -21,11 +21,12 @@ public class Homework extends Element {
     }
 
     //MODIFIES: this
-    //EFFECTS: sets homework status to done
+    //EFFECTS: sets homework status to done if true, false otherwise
     public void isHomeworkDone(Boolean b) {
         homeworkDone = b;
     }
 
+    //EFFECTS: returns subject of homework assignment
     public String getSubject() {
         return subject;
     }

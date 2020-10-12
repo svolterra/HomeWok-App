@@ -13,7 +13,7 @@ public class HomeworkList implements ElementList {
     }
 
     //MODIFIES: this
-    //EFFECTS: adds homework assignment to list of assignments
+    //EFFECTS: adds homework assignment to list of homework
     public void addHomework(String subject, String name) {
         homeworkList.add(new Homework(subject, name));
     }
@@ -21,23 +21,23 @@ public class HomeworkList implements ElementList {
 
     //EFFECTS: returns size of homework list
     public int size() {
-        return  homeworkList.size();
+        return homeworkList.size();
     }
 
-    //EFFECTS: returns element at given index
+    //EFFECTS: returns homework at given index
     public Homework get(int index) {
         Homework atIndex = homeworkList.get(index);
         return atIndex;
     }
 
     //MODIFIES: this
-    //EFFECTS: removes given element from list of list elements
+    //EFFECTS: removes given homework assignment from list of homework
     public void remove(Element e) {
         homeworkList.remove(e);
     }
 
 
-    //EFFECTS: returns true if list  contains given element, false otherwise
+    //EFFECTS: returns true if list  contains given homework assignment, false otherwise
     public boolean contain(Element e) {
         return homeworkList.contains(e);
     }
@@ -45,22 +45,20 @@ public class HomeworkList implements ElementList {
 
     //REQUIRES: i > 0
     //MODIFIES: this
-    //EFFECTS: removes element at given index from list
+    //EFFECTS: removes homework assignment at given index from list
     public void removeAtIndex(int i) {
         Homework elementToRemove = homeworkList.get(i);
         homeworkList.remove(elementToRemove);
     }
 
-    //EFFECTS: returns list of homework assignments so far
+    //EFFECTS: returns list of homework assignment names so far
     public List<String> getListOfElementTitles() {
         List<String> finalElementList = new ArrayList<>();
-        for (Homework h: homeworkList) {
-            finalElementList.add(h.getSubject());
+        for (Homework h : homeworkList) {
+            finalElementList.add(h.getName());
         }
         return finalElementList;
     }
-
-
 
 
 }

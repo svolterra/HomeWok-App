@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+//Represents an ingredient of a recipe with its name and the amount needed in grams
 public class Ingredient {
     private String ingredientName;
     private int amount;
@@ -23,9 +24,6 @@ public class Ingredient {
     public int getAmountNeeded() {
         return amount;
     }
-
-
-
 
 
 }

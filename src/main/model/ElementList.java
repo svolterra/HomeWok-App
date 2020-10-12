@@ -3,11 +3,11 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-// Provides a specification of methods common to both HomeworkList and RecipeList
+// Provides a specification of methods common to lists of elements
 public interface ElementList {
 
 
-    //EFFECTS: returns size of homework list
+    //EFFECTS: returns size of element list
     public int size();
 
 
@@ -15,7 +15,7 @@ public interface ElementList {
     //EFFECTS: removes given element from list of list elements
     public void remove(Element e);
 
-    //EFFECTS: returns true if list  contains given element, false otherwise
+    //EFFECTS: returns true if list contains given element, false otherwise
     public boolean contain(Element e);
 
 
@@ -23,7 +23,6 @@ public interface ElementList {
     //MODIFIES: this
     //EFFECTS: removes element at given index from list
     public void removeAtIndex(int i);
-
 
 
 }

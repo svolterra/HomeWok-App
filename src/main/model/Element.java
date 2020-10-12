@@ -3,17 +3,19 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+//Represents a non-primitive element of a list with a description and name
 public class Element {
     protected String name;
     protected List<String> description;
 
+    //EFFECTS: constructs an element with given name and empty list of descriptions
     public Element(String name) {
         this.name = name;
         description = new ArrayList<>();
     }
 
     //MODIFIES: this
-    //EFFECTS: adds direction to list of recipe directions
+    //EFFECTS: adds description to list of element descriptions
     public void addDescription(String description) {
         this.description.add(description);
     }

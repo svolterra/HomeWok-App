@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //Represents a recipe with a name, list of ingredients, list of directions to make recipe,
-// and whether user will make recipe again or not
+//and whether user will make recipe again or not
 public class Recipe extends Element {
     private List<Ingredient> ingredients;
     private boolean makeAgain;
@@ -38,9 +38,6 @@ public class Recipe extends Element {
     public List<Ingredient> getIngredients() {
         return ingredients;
     }
-
-
-
 
 
 }

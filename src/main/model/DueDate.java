@@ -1,5 +1,6 @@
 package model;
 
+//Represents a due date for homework assignments with a day/month/year date format
 public class DueDate {
     private int day;
     private int month;
@@ -26,7 +27,7 @@ public class DueDate {
     }
 
     //EFFECTS: returns year of due date
-    public  int getYear() {
+    public int getYear() {
         return year;
     }
 }

@@ -7,6 +7,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+//Tests for the HomeworkList class
 public class HomeworkListTest {
     private HomeworkList homeworkList;
 
@@ -92,9 +93,9 @@ public class HomeworkListTest {
 
         List<String> homework = homeworkList.getListOfElementTitles();
         assertEquals(3, homework.size());
-        assertEquals("CPSC 210", homework.get(0));
-        assertEquals("PSYC 301", homework.get(1));
-        assertEquals("COGS 303", homework.get(2));
+        assertEquals("Term Project Phase One", homework.get(0));
+        assertEquals("Listen to Lecture", homework.get(1));
+        assertEquals("Read Required Material", homework.get(2));
 
     }
 
