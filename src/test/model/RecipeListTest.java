@@ -10,37 +10,37 @@ import static org.junit.jupiter.api.Assertions.*;
 //Tests for the RecipeList class
 public class RecipeListTest {
     private RecipeList recipeList;
+    private Recipe brownies;
+
+
+    @Test
+    public void testConstructor() {
+        recipeList = new RecipeList();
+        assertEquals(0, recipeList.size());
+    }
 
     @BeforeEach
     public void setup() {
         recipeList = new RecipeList();
-    }
+        recipeList.addRecipe("Brownies");
+        brownies = recipeList.get(0);
 
-    @Test
-    public void testConstructor() {
-        assertEquals(0, recipeList.size());
     }
 
     @Test
     public void testAddOneElement() {
-        recipeList.addRecipe("Brownies");
-
-        Element recipe0 = recipeList.get(0);
-
-        assertEquals("Brownies", recipe0.getName());
+        assertEquals("Brownies", brownies.getName());
         assertEquals(1, recipeList.size());
-        assertEquals(0, recipe0.getDescription().size());
+        assertEquals(0, brownies.getDescription().size());
     }
 
     @Test
     public void testAddSeveralElements() {
-        recipeList.addRecipe("Brownies");
         recipeList.addRecipe("Cookies");
         recipeList.addRecipe("Cake");
 
         assertEquals(3, recipeList.size());
 
-        Recipe brownies = recipeList.get(0);
         Recipe cookies = recipeList.get(1);
         Recipe cake = recipeList.get(2);
 
@@ -51,15 +51,11 @@ public class RecipeListTest {
 
     @Test
     public void testAddDescriptions() {
-        recipeList.addRecipe("Brownies");
+        brownies.addDescription("Preheat oven to 350 degrees");
+        brownies.addDescription("Cream butter and sugar together");
+        brownies.addDescription("Add eggs to butter mixture");
 
-        Recipe testRecipe = recipeList.get(0);
-
-        testRecipe.addDescription("Preheat oven to 350 degrees");
-        testRecipe.addDescription("Cream butter and sugar together");
-        testRecipe.addDescription("Add eggs to butter mixture");
-
-        List<String> recipeDescription = testRecipe.getDescription();
+        List<String> recipeDescription = brownies.getDescription();
 
         assertEquals(3, recipeDescription.size());
         assertEquals("Preheat oven to 350 degrees", recipeDescription.get(0));
@@ -70,15 +66,11 @@ public class RecipeListTest {
 
     @Test
     public void testAddIngredients() {
-        recipeList.addRecipe("Brownies");
+        brownies.addIngredient("Sugar", 249);
+        brownies.addIngredient("Butter", 71);
+        brownies.addIngredient("Cocoa powder", 75);
 
-        Recipe testRecipe = recipeList.get(0);
-
-        testRecipe.addIngredient("Sugar", 249);
-        testRecipe.addIngredient("Butter", 71);
-        testRecipe.addIngredient("Cocoa powder", 75);
-
-        List<Ingredient> ingredients = testRecipe.getIngredients();
+        List<Ingredient> ingredients = brownies.getIngredients();
         Ingredient sugar = ingredients.get(0);
         Ingredient butter = ingredients.get(1);
         Ingredient cocoaPowder = ingredients.get(2);
@@ -95,11 +87,10 @@ public class RecipeListTest {
 
     @Test
     public void testRemove() {
-        recipeList.addRecipe("Brownies");
         recipeList.addRecipe("Creme Brulee");
         assertEquals(2, recipeList.size());
 
-        recipeList.remove(recipeList.get(0));
+        recipeList.remove(brownies);
         assertEquals(1, recipeList.size());
         recipeList.remove(recipeList.get(0));
         assertEquals(0, recipeList.size());
@@ -107,15 +98,11 @@ public class RecipeListTest {
 
     @Test
     public void testContains() {
-        recipeList.addRecipe("Brownies");
-        Recipe brownies = recipeList.get(0);
-
         assertTrue(recipeList.contain(brownies));
     }
 
     @Test
     public void testRemoveAtIndex() {
-        recipeList.addRecipe("Brownies");
         recipeList.addRecipe("Cookies");
         recipeList.addRecipe("Pavlova");
         assertEquals(3, recipeList.size());
@@ -128,7 +115,6 @@ public class RecipeListTest {
 
     @Test
     public void testGetListOfElementTitles() {
-        recipeList.addRecipe("Brownies");
         recipeList.addRecipe("Cookies");
         recipeList.addRecipe("Cake");
         recipeList.addRecipe("Pudding");
