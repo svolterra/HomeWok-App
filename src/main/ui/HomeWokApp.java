@@ -2,6 +2,7 @@ package ui;
 
 import model.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -18,6 +19,7 @@ public class HomeWokApp {
         runHomeWokApp();
     }
 
+    //Code format borrowed from TellerApp project
     private void runHomeWokApp() {
         boolean continueProgram = true;
         String userCommand = null;
@@ -36,9 +38,10 @@ public class HomeWokApp {
             }
         }
 
-        System.out.println("\n Bye! Have a nice day!");
+        System.out.println("\n Thank you! Have a nice day!");
     }
 
+    //Code format borrowed from TellerApp project
     private void setup() {
         homeworkList = new HomeworkList();
 
@@ -65,6 +68,7 @@ public class HomeWokApp {
         userInput = new Scanner(System.in);
     }
 
+    //Code format borrowed from TellerApp project
     private void initialAppMenu() {
         System.out.println("\n Please pick one of the following:");
         System.out.println("\t h -> Homework Assignments");
@@ -80,86 +84,10 @@ public class HomeWokApp {
         }
     }
 
-    private void homeworkListOptions() {
-        if (0 == homeworkList.size()) {
-            System.out.println("Great work! You have no homework assignments due!");
-        } else {
-            returnHomeworkList();
-        }
-    }
-
-
-    private void returnHomeworkList() {
-        String userSelection = "";
-        System.out.println("Here are your current homework assignments: " + homeworkList.getListOfElementTitles()
-                + "\n");
-        System.out.println("Would you like to view an assignemnt?");
-        System.out.println("\t y -> yes");
-        System.out.println("\t n -> no");
-
-        userSelection = userInput.next();
-        userSelection = userSelection.toLowerCase();
-
-        if (userSelection.equals("y")) {
-            viewAssignments();
-        }
-    }
-
-    private void viewAssignments() {
-        String userSelection;
-
-        System.out.println("Please pick the homework you would like to view: " + homeworkList.getListOfElementTitles());
-
-        userSelection = userInput.next();
-
-        int index = homeworkList.getListOfElementTitles().indexOf(userSelection);
-        Homework userChoice = homeworkList.get(index);
-
-        System.out.println("\n" + "Homework: " + userChoice.getName() + "\n");
-        System.out.println("Here is the subject and name:");
-        System.out.println(userChoice.getSubject() + "\t" + userChoice.getName());
-        System.out.println("\n" + "Here's the description:");
-        List<String> descriptions = userChoice.getDescription();
-        for (String s : descriptions) {
-            System.out.println(s);
-        }
-    }
-
-
-    private void addHomeworkAssignment() {
-        String subjectInput = "";
-        String nameInput = "";
-
-        System.out.println("\n Please insert the subject of the homework assignment: ");
-        subjectInput = userInput.next();
-
-        System.out.println("\n Please insert the name of the homework assignment");
-        nameInput = userInput.next();
-
-        homeworkList.addHomework(subjectInput, nameInput);
-        System.out.println("Homework added to assignments!");
-    }
-
-
-    private void nextHomeworkSelection() {
-        System.out.println("Would you like to access your homework list or add a new assignment?");
-        System.out.println("\t l -> Access homework list");
-        System.out.println("\t n -> Add new homework assignment");
-
-        String userSelection = userInput.next();
-        userSelection = userSelection.toLowerCase();
-
-        if (userSelection.equals("l")) {
-            homeworkListOptions();
-        } else {
-            addHomeworkAssignment();
-        }
-    }
-
     private void nextRecipeSelection() {
         String userSelection = "";
 
-        System.out.println("Would you like to access your recipe list or add a new recipe?");
+        System.out.println("\n Would you like to access your recipe list or add a new recipe?");
         System.out.println("\t l -> Access recipe list");
         System.out.println("\t n -> Add new recipe");
 
@@ -175,8 +103,8 @@ public class HomeWokApp {
 
     private void recipeListOptions() {
         String userSelection = "";
-        System.out.println("Here are your current recipes: " + recipeList.getListOfElementTitles() + "\n");
-        System.out.println("Would you like to view a recipe?");
+        System.out.println("\n Here are your current recipes: " + recipeList.getListOfElementTitles() + "\n");
+        System.out.println("\n Would you like to view a recipe?");
         System.out.println("\t y -> yes");
         System.out.println("\t n -> no");
 
@@ -192,7 +120,7 @@ public class HomeWokApp {
     private String optionProviderIngredients() {
         String userSelection = "";
 
-        System.out.println("Would you like to add a new ingredient to your recipe?");
+        System.out.println("\n Would you like to add a new ingredient to your recipe?");
         System.out.println("\t y -> yes");
         System.out.println("\t n -> no");
 
@@ -200,40 +128,42 @@ public class HomeWokApp {
         userSelection = userSelection.toLowerCase();
 
         return userSelection;
-
     }
 
     private void addNewRecipeAndIngredients() {
+        Scanner input = new Scanner(System.in);
         System.out.println("What is the name of the recipe?");
 
-        Recipe recipeName = new Recipe(userInput.next());
-        recipeList.add(recipeName);
-        int indexOfRecipe = recipeList.getIndexOf(recipeName);
+        String recipeName = input.nextLine();
+
+        Recipe newRecipe = new Recipe(recipeName);
+        recipeList.add(newRecipe);
+        int indexOfRecipe = recipeList.getIndexOf(newRecipe);
+
         String userOption = optionProviderIngredients();
 
-
         while (userOption.equals("y")) {
-            System.out.println("What is the name of the ingredient?");
+            System.out.println("\n What is the name of the ingredient?");
             String ingredientName = userInput.next();
 
-            System.out.println("How much of this ingredient (in grams) is needed for this recipe?");
+            System.out.println("\n How much of this ingredient (in grams) is needed for this recipe?");
             int ingredientAmount = userInput.nextInt();
 
             Recipe userRecipe = recipeList.get(indexOfRecipe);
             userRecipe.addIngredient(ingredientName, ingredientAmount);
 
             if (optionProviderIngredients().equals("n")) {
-                System.out.println("\n" + "Ingredients added to recipe!" + "\n");
+                System.out.println("\n Ingredients added to recipe!" + "\n");
                 addRecipeDescription();
                 break;
             }
         }
+
     }
 
     private String optionProviderDescription() {
         String userSelection = "";
 
-        System.out.println("Would you like to add a new description to your recipe?");
         System.out.println("\t y -> yes");
         System.out.println("\t n -> no");
 
@@ -245,50 +175,164 @@ public class HomeWokApp {
 
 
     private void addRecipeDescription() {
-        String userSelection = "";
+        Scanner input = new Scanner(System.in);
+        System.out.println("\n Would you like to add a new direction to a recipe?");
+        Recipe recipe = new Recipe("");
         String userOption = optionProviderDescription();
-        Recipe chosenRecipe = new Recipe("");
 
         if (userOption.equals("y")) {
-            System.out.println("Please enter recipe name:");
-            userSelection = userInput.next();
-            int index = recipeList.getListOfElementTitles().indexOf(userSelection);
-            chosenRecipe = recipeList.get(index);
+            System.out.println("\n Please insert recipe name: ");
+            String chosenRecipe = input.nextLine();
 
-            while (userOption.equals("y")) {
-                System.out.println("Please enter description:");
-                String description = userInput.next();
-                chosenRecipe.addDescription(description);
+            int index = recipeList.getListOfElementTitles().indexOf(chosenRecipe);
+            recipe = recipeList.get(index);
+        }
 
-                if (optionProviderDescription().equals("n")) {
-                    System.out.println("Directions added to recipe!");
-                    break;
-                }
+        while (userOption.equals("y")) {
+            System.out.println("\n Please enter direction in recipe:");
+            String description = input.nextLine();
+
+            recipe.addDescription(description);
+
+            System.out.println("\n Direction added to recipe!");
+            System.out.println("\n Would you like to add another direction?");
+
+            if (optionProviderDescription().equals("n")) {
+                break;
             }
         }
     }
 
 
+    //REQUIRES: recipe name chosen is already in list of recipes
     private void viewRecipe() {
+        Scanner input = new Scanner(System.in);
         String userSelection;
 
-        System.out.println("Please pick the recipe you would like to view: " + recipeList.getListOfElementTitles());
+        System.out.println("\n Please type the name of the recipe you would like to view: "
+                + recipeList.getListOfElementTitles());
 
-        userSelection = userInput.next();
+        userSelection = input.nextLine();
 
         int index = recipeList.getListOfElementTitles().indexOf(userSelection);
         Recipe userChoice = recipeList.get(index);
 
-        System.out.println("\n" + "Recipe: " + userChoice.getName() + "\n");
+        System.out.println("\n Recipe: " + userChoice.getName() + "\n");
+
         System.out.println("Here are the ingredients:");
         List<Ingredient> ingredientList = userChoice.getIngredients();
         for (Ingredient i : ingredientList) {
-            System.out.println(i.getIngredientName() + "\t" + i.getAmountNeeded());
+            System.out.println(i.getIngredientName() + "\t" + i.getAmountNeeded() + "g");
         }
-        System.out.println("\n" + "Here's how you make it:");
+
+        System.out.println("\n Here's how you make it:");
         List<String> descriptions = userChoice.getDescription();
         for (String s : descriptions) {
             System.out.println(s);
+        }
+    }
+
+    private void homeworkListOptions() {
+        if (0 == homeworkList.size()) {
+            System.out.println("\n Great work! You have no homework assignments due!");
+        } else {
+            returnHomeworkList();
+        }
+    }
+
+
+    private void returnHomeworkList() {
+        String userSelection = "";
+        System.out.println("\n Here are your current homework assignments subjects: "
+                + homeworkList.getListOfElementSubjects());
+        System.out.println("\n Here are your current homework assignment names: "
+                + homeworkList.getListOfElementTitles() + "\n");
+        System.out.println("\n Would you like to view an assignment?");
+        System.out.println("\t y -> yes");
+        System.out.println("\t n -> no");
+
+        userSelection = userInput.next();
+        userSelection = userSelection.toLowerCase();
+
+        if (userSelection.equals("y")) {
+            viewAssignments();
+        }
+    }
+
+    private void viewAssignments() {
+        Scanner input = new Scanner(System.in);
+        String userSelection;
+
+        System.out.println("\n Please type the name of the homework you would like to view: "
+                + homeworkList.getListOfElementTitles());
+
+        userSelection = input.nextLine();
+
+        int index = homeworkList.getListOfElementTitles().indexOf(userSelection);
+        Homework userChoice = homeworkList.get(index);
+
+        System.out.println("\n Here is the subject and name:");
+        System.out.println(userChoice.getSubject() + "\t" + userChoice.getName());
+        System.out.println("\n Here's the description:");
+        List<String> descriptions = userChoice.getDescription();
+        for (String s : descriptions) {
+            System.out.println(s);
+        }
+    }
+
+
+    private void addHomeworkAssignment() {
+        Scanner input = new Scanner(System.in);
+        String subjectInput = "";
+        String nameInput = "";
+
+        System.out.println("\n Please insert the subject of the homework assignment: ");
+        subjectInput = input.nextLine();
+
+        System.out.println("\n Please insert the name of the homework assignment: ");
+        nameInput = input.nextLine();
+
+        homeworkList.addHomework(subjectInput, nameInput);
+        System.out.println("\n Homework added to assignments!");
+
+        addHomeworkDescription();
+    }
+
+
+    private void addHomeworkDescription() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("\n Would you like to add a homework description?");
+        String userOption = optionProviderDescription();
+
+        if (userOption.equals("y")) {
+            System.out.println("Please type in name of assignment: " + homeworkList.getListOfElementTitles());
+            String selection = input.nextLine();
+
+            if (homeworkList.getListOfElementTitles().contains(selection)) {
+                int index = homeworkList.getListOfElementTitles().indexOf(selection);
+                Homework chosen = homeworkList.get(index);
+
+                System.out.println("\n Please enter description of assignment: ");
+                String description = input.nextLine();
+
+                chosen.addDescription(description);
+                System.out.println("\n Description added to homework!");
+            }
+        }
+    }
+
+    private void nextHomeworkSelection() {
+        System.out.println("\n" + "Would you like to access your homework list or add a new assignment?");
+        System.out.println("\t l -> Access homework list");
+        System.out.println("\t n -> Add new homework assignment");
+
+        String userSelection = userInput.next();
+        userSelection = userSelection.toLowerCase();
+
+        if (userSelection.equals("l")) {
+            homeworkListOptions();
+        } else {
+            addHomeworkAssignment();
         }
     }
 

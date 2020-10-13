@@ -16,8 +16,8 @@ public class Element {
 
     //MODIFIES: this
     //EFFECTS: adds description to list of element descriptions
-    public void addDescription(String description) {
-        this.description.add(description);
+    public void addDescription(String recipeDescription) {
+        description.add(recipeDescription);
     }
 
 
