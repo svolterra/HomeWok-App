@@ -127,5 +127,13 @@ public class RecipeListTest {
         assertEquals("Pudding", recipes.get(3));
     }
 
+    @Test
+    //TODO
+    public void testGetIndexOf(){}
+
+    @Test
+    //TODO
+    public void testAdd() {}
+
 
 }

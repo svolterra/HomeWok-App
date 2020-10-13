@@ -60,6 +60,16 @@ public class HomeworkList implements ElementList {
         return finalElementList;
     }
 
+    //EFFECTS: returns list of homework assignment subjects so far
+    public List<String> getListOfElementSubjects() {
+        List<String> finalElementList = new ArrayList<>();
+        for (Homework h : homeworkList) {
+            finalElementList.add(h.getSubject());
+        }
+        return finalElementList;
+    }
+
+
 
 }
 

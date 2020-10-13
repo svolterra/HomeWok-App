@@ -13,6 +13,12 @@ public class RecipeList implements ElementList {
     }
 
     //MODIFIES: this
+    //EFFECTS: adds recipe to list of recipes
+    public void add(Recipe recipe) {
+        recipeList.add(recipe);
+    }
+
+    //MODIFIES: this
     //EFFECTS: adds given recipe to list of recipes
     public void addRecipe(String recipeName) {
         recipeList.add(new Recipe(recipeName));
@@ -42,6 +48,11 @@ public class RecipeList implements ElementList {
         return recipeList.contains(e);
     }
 
+    //EFFECTS: returns true if list contains given string, false otherwise
+    public boolean containString(String s) {
+        return recipeList.contains(s);
+    }
+
 
     //REQUIRES: i > 0
     //MODIFIES: this
@@ -58,6 +69,11 @@ public class RecipeList implements ElementList {
             finalElementList.add(r.getName());
         }
         return finalElementList;
+    }
+
+    public int getIndexOf(Recipe r) {
+        int index = recipeList.indexOf(r);
+        return index;
     }
 
 

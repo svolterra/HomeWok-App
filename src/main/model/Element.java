@@ -20,6 +20,8 @@ public class Element {
         this.description.add(description);
     }
 
+
+
     //EFFECTS: returns name of list element
     public String getName() {
         return name;

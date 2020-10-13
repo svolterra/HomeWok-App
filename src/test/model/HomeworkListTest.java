@@ -99,5 +99,18 @@ public class HomeworkListTest {
 
     }
 
+    @Test
+    public void testGetListOfElementSubjects() {
+        homeworkList.addHomework("PSYC 301", "Listen to Lecture");
+        homeworkList.addHomework("COGS 303", "Read Required Material");
+
+        List<String> homework = homeworkList.getListOfElementSubjects();
+        assertEquals(3, homework.size());
+        assertEquals("CPSC 210", homework.get(0));
+        assertEquals("PSYC 301", homework.get(1));
+        assertEquals("COGS 303", homework.get(2));
+
+    }
+
 
 }
