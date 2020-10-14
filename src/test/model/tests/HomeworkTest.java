@@ -1,5 +1,7 @@
-package model;
+package model.tests;
 
+import model.DueDate;
+import model.Homework;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

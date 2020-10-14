@@ -44,7 +44,7 @@ public class HomeWokApp {
 
     //Note: Code format borrowed from TellerApp project
     //MODIFIES: this
-    //EFFECTS:  initializes ElementLists
+    //EFFECTS:  initializes ElementLists;
     //          adds a bonus recipe to existing list of recipes that can be accessed and viewed by user
     private void setup() {
         homeworkList = new HomeworkList();
@@ -94,10 +94,12 @@ public class HomeWokApp {
     }
 
 
-    //REQUIRES: user input only as l or n
-    /* EFFECTS: processes user input to proceed with application:
-                l allows user to access the existing list of recipes
-                n allows user to add a new recipe to list of recipes */
+    /*
+     * REQUIRES: user input only as l or n
+     * EFFECTS: processes user input to proceed with application;
+     *           l allows user to access the existing list of recipes;
+     *           n allows user to add a new recipe to list of recipes
+     */
     private void nextRecipeSelection() {
         String userSelection = "";
 
@@ -115,10 +117,12 @@ public class HomeWokApp {
         }
     }
 
-    //REQUIRES: user input only as y for yes or n for no
-    //EFFECTS: prints current recipes in program's list of recipes
-    //         y allows user to choose to view a current recipe in detail
-    //         n redirects user back to initial application menu
+    /*
+     * REQUIRES: user input only as y for yes or n for no
+     * EFFECTS: prints current recipes in program's list of recipes;
+     *          y allows user to choose to view a current recipe in detail;
+     *          n redirects user back to initial application menu
+     */
     private void recipeListOptions() {
         String userSelection = "";
         System.out.println("\n Here are your current recipes: " + recipeList.getListOfElementTitles() + "\n");
@@ -135,10 +139,12 @@ public class HomeWokApp {
     }
 
 
-    //REQUIRES: user input as y for yes or n for no
-    /* EFFECTS: -y allows user to add an ingredient to a new recipe
-                -n redirects user back to initial application menu
-                -returns user's selection */
+    /*
+     * REQUIRES: user input as y for yes or n for no
+     * EFFECTS: y allows user to add an ingredient to a new recipe;
+     *          n redirects user back to initial application menu;
+     *          returns user's selection
+     */
     private String optionProviderIngredients() {
         String userSelection = "";
 
@@ -152,11 +158,13 @@ public class HomeWokApp {
         return userSelection;
     }
 
-    //MODIFIES: this
-    /*  EFFECTS: -allows user to initialize a new recipe by typing in the name of the recipe
-                 -allows user to either add one or more ingredients to recipe along with their associated amounts in
-                 grams, or skip this step
-                 -adds user's recipe to existing list of recipes */
+    /*
+     * MODIFIES: this
+     * EFFECTS: allows user to initialize a new recipe by typing in the name of the recipe;
+     *          allows user to either add one or more ingredients to recipe along with their associated amounts in
+     *          grams, or skip this step;
+     *          adds user's recipe to existing list of recipes
+     */
     private void addNewRecipeAndIngredients() {
         Scanner input = new Scanner(System.in);
         System.out.println("What is the name of the recipe?");
@@ -204,12 +212,14 @@ public class HomeWokApp {
     }
 
 
-    /* REQUIRES: -one or more ingredients have been added to recipe
-                 -selected recipe already exists in program's recipe list
-                 -user input exactly matches desired recipe name  */
-    //MODIFIES:  this
-    //EFFECTS:   allows user to either add one or more directions describing how to make selected recipe,
-    //           or to skip this step
+    /*
+     * REQUIRES: one or more ingredients have been added to recipe;
+     *           selected recipe already exists in program's recipe list;
+     *           user input exactly matches desired recipe name
+     * MODIFIES: this
+     * EFFECTS:  allows user to either add one or more directions describing how to make selected recipe,
+     *           or to skip this step
+     */
     private void addRecipeDescription() {
         Scanner input = new Scanner(System.in);
         System.out.println("\n Would you like to add a new direction to a recipe?");
@@ -240,11 +250,13 @@ public class HomeWokApp {
     }
 
 
-    //REQUIRES: -recipe name selected by user is already in existing list of recipes
-    //          -user input exactly matches recipe name
-    /* EFFECTS: -allows user to select a recipe to view in detail
-                -prints selected recipe's name, ingredients + associated amounts, and list descriptions (if available)
-                -if recipe does not include an associated list of descriptions, no description is printed */
+    /*
+     * REQUIRES: recipe name selected by user is already in existing list of recipes;
+     *           user input exactly matches recipe name
+     * EFFECTS: allows user to select a recipe to view in detail;
+     *          prints selected recipe's name, ingredients + associated amounts, and list descriptions (if available);
+     *          if recipe does not include an associated list of descriptions, no description is printed
+     */
     private void viewRecipe() {
         Scanner input = new Scanner(System.in);
         String userSelection;
@@ -277,7 +289,7 @@ public class HomeWokApp {
     }
 
 
-    //EFFECTS: if existing homework list is empty, returns motivating message to user
+    //EFFECTS: if existing homework list is empty, returns motivating message to user;
     //         otherwise, user is taken to next step to view existing homework assignments
     private void homeworkListOptions() {
         if (0 == homeworkList.size()) {
@@ -288,10 +300,12 @@ public class HomeWokApp {
     }
 
 
-    //REQUIRES: user input only as l or n
-    /* EFFECTS: -processes user input to proceed with application:
-                -"l" allows user to access the existing list of homework assignments
-                -"n" allows user to add a new homework assignment to list of homework */
+    /*
+     * REQUIRES: user input only as l or n
+     * EFFECTS: processes user input to proceed with application:
+     *          "l" allows user to access the existing list of homework assignments;
+     *          "n" allows user to add a new homework assignment to list of homework
+     */
     private void nextHomeworkSelection() {
         System.out.println("\n" + "Would you like to access your homework list or add a new assignment?");
         System.out.println("\t l -> Access homework list");
@@ -307,10 +321,12 @@ public class HomeWokApp {
         }
     }
 
-    //REQUIRES: user input only as y for yes or n for no
-    //EFFECTS:  -prints current list of homework assignment subjects and names
-    //          -allows user to choose whether or not they would like to view the details of a certain homework
-    //          assignment
+    /*
+     * REQUIRES:  user input only as y for yes or n for no
+     * EFFECTS:   prints current list of homework assignment subjects and names;
+     *            allows user to choose whether or not they would like to view the details of a certain homework
+     *            assignment
+     */
     private void returnHomeworkList() {
         String userSelection = "";
         System.out.println("\n Here are your current homework assignments subjects: "
@@ -329,10 +345,12 @@ public class HomeWokApp {
         }
     }
 
-    //REQUIRES: -homework selected by user already exists in program's homework list
-    //          -user input exactly matches homework name
-    //EFFECTS:  -prints selected homework assignment's subject, name, due date, and description (if available)
-    //          -if homework assignment does not include an associated list of descriptions, no description is printed
+    /*
+     * REQUIRES: homework selected by user already exists in program's homework list;
+     *           user input exactly matches homework name
+     * EFFECTS: prints selected homework assignment's subject, name, due date, and description (if available);
+     *          if homework assignment does not include an associated list of descriptions, no description is printed
+     */
     private void viewAssignments() {
         Scanner input = new Scanner(System.in);
         String userSelection;
@@ -364,10 +382,12 @@ public class HomeWokApp {
     }
 
 
-    //MODIFIES: this
-    // EFFECTS: allows user to initialize a new homework assignment and enter the assignment's subject, name,
-    //          and due date, including the day, month, and year assignment is due, then adds it to existing homework
-    //          list along with associated details
+    /*
+     * MODIFIES: this
+     * EFFECTS: allows user to initialize a new homework assignment and enter the assignment's subject, name,
+     *          and due date, including the day, month, and year assignment is due, then adds it to existing homework
+     *          list along with associated details
+     */
     private void addHomeworkAssignment() {
         Scanner input = new Scanner(System.in);
         String subjectInput = "";
@@ -399,11 +419,13 @@ public class HomeWokApp {
     }
 
 
-    //REQUIRES: -name of homework selected by user is contained within list of homework assignment names
-    //          -user input exactly matches name of selected homework assignment
-    //MODIFIES: this
-    //EFFECTS:  allows user to either skip this step or add a description to enter additional details
-    //          about selected homework assignment
+    /*
+     * REQUIRES: name of homework selected by user is contained within list of homework assignment names;
+     *           user input exactly matches name of selected homework assignment
+     * MODIFIES: this
+     * EFFECTS:  allows user to either skip this step or add a description to enter additional details
+     *           about selected homework assignment
+     */
     private void addHomeworkDescription() {
         Scanner input = new Scanner(System.in);
         System.out.println("\n Would you like to add a homework description?");

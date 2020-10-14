@@ -1,5 +1,7 @@
-package model;
+package model.tests;
 
+import model.Ingredient;
+import model.Recipe;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
