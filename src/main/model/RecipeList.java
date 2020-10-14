@@ -48,11 +48,6 @@ public class RecipeList implements ElementList {
         return recipeList.contains(e);
     }
 
-    //EFFECTS: returns true if list contains given string, false otherwise
-    public boolean containString(String s) {
-        return recipeList.contains(s);
-    }
-
 
     //REQUIRES: i > 0
     //MODIFIES: this
