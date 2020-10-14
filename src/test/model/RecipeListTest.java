@@ -128,12 +128,44 @@ public class RecipeListTest {
     }
 
     @Test
-    //TODO
-    public void testGetIndexOf(){}
+    public void testGetIndexOf(){
+        recipeList.addRecipe("Cookies");
+        recipeList.addRecipe("Cake");
+        recipeList.addRecipe("Pudding");
+
+        Recipe cookies = recipeList.get(1);
+        Recipe cake = recipeList.get(2);
+        Recipe pudding = recipeList.get(3);
+
+        assertEquals(0, recipeList.getIndexOf(brownies));
+        assertEquals(1, recipeList.getIndexOf(cookies));
+        assertEquals(2, recipeList.getIndexOf(cake));
+        assertEquals(3, recipeList.getIndexOf(pudding));
+    }
 
     @Test
-    //TODO
-    public void testAdd() {}
+    public void testAdd(){
+        Recipe cookies = new Recipe("Cookies");
+        Recipe pavlova = new Recipe("Pavlova");
+        Recipe scones = new Recipe("Scones");
+
+        recipeList.add(cookies);
+        assertEquals(2, recipeList.size());
+        assertEquals(brownies, recipeList.get(0));
+        assertEquals("Brownies", recipeList.get(0).getName());
+        assertEquals(cookies, recipeList.get(1));
+        assertEquals("Cookies", recipeList.get(1).getName());
+
+        recipeList.add(pavlova);
+        assertEquals(3, recipeList.size());
+        assertEquals(pavlova, recipeList.get(2));
+        assertEquals("Pavlova", recipeList.get(2).getName());
+
+        recipeList.add(scones);
+        assertEquals(4, recipeList.size());
+        assertEquals(scones, recipeList.get(3));
+        assertEquals("Scones", recipeList.get(3).getName());
+    }
 
 
 }

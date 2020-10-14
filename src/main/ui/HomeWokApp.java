@@ -60,15 +60,17 @@ public class HomeWokApp {
 
         cookies.addDescription("1) Cream the butter and sugar together in a bowl.");
         cookies.addDescription("2) Add the eggs and vanilla to butter mixture. Whisk until smooth.");
-        cookies.addDescription("3) Add flour, baking soda, and salt. Fold gently until fully incorporated.");
+        cookies.addDescription("3)"
+                + "Add flour, baking soda, and salt. Fold gently until fully incorporated.");
         cookies.addDescription("4) Add chocolate chips. Fold just until fully combined.");
-        cookies.addDescription("5) Chill dough for an hour then place cookies in oven preheated to 350F.");
-
+        cookies.addDescription("5)"
+                + "Chill dough for an hour then place cookies in oven preheated to 350F.");
 
         userInput = new Scanner(System.in);
     }
 
     //Code format borrowed from TellerApp project
+    //EFFECTS: displays initial menu of application, including all options user can choose
     private void initialAppMenu() {
         System.out.println("\n Please pick one of the following:");
         System.out.println("\t h -> Homework Assignments");
@@ -76,6 +78,7 @@ public class HomeWokApp {
         System.out.println("\t q -> Quit program");
     }
 
+    //Code format borrowed from TellerApp project
     private void userCommand(String userCommand) {
         if (userCommand.equals("h")) {
             nextHomeworkSelection();
@@ -144,7 +147,7 @@ public class HomeWokApp {
 
         while (userOption.equals("y")) {
             System.out.println("\n What is the name of the ingredient?");
-            String ingredientName = userInput.next();
+            String ingredientName = input.nextLine();
 
             System.out.println("\n How much of this ingredient (in grams) is needed for this recipe?");
             int ingredientAmount = userInput.nextInt();
@@ -174,6 +177,7 @@ public class HomeWokApp {
     }
 
 
+    //REQUIRES: one or more ingredients have been added to recipe
     private void addRecipeDescription() {
         Scanner input = new Scanner(System.in);
         System.out.println("\n Would you like to add a new direction to a recipe?");
@@ -181,7 +185,7 @@ public class HomeWokApp {
         String userOption = optionProviderDescription();
 
         if (userOption.equals("y")) {
-            System.out.println("\n Please insert recipe name: ");
+            System.out.println("\n Please select recipe by typing in its name: " + recipeList.getListOfElementTitles());
             String chosenRecipe = input.nextLine();
 
             int index = recipeList.getListOfElementTitles().indexOf(chosenRecipe);
@@ -209,7 +213,8 @@ public class HomeWokApp {
         Scanner input = new Scanner(System.in);
         String userSelection;
 
-        System.out.println("\n Please type the name of the recipe you would like to view: "
+
+        System.out.println("\n Please select the recipe you would like to view by typing in its name: "
                 + recipeList.getListOfElementTitles());
 
         userSelection = input.nextLine();
@@ -226,9 +231,12 @@ public class HomeWokApp {
         }
 
         System.out.println("\n Here's how you make it:");
+        int size = userChoice.getDescription().size();
+
         List<String> descriptions = userChoice.getDescription();
+
         for (String s : descriptions) {
-            System.out.println(s);
+            System.out.println((descriptions.indexOf(s) + 1) + ") " + s);
         }
     }
 
@@ -247,7 +255,7 @@ public class HomeWokApp {
                 + homeworkList.getListOfElementSubjects());
         System.out.println("\n Here are your current homework assignment names: "
                 + homeworkList.getListOfElementTitles() + "\n");
-        System.out.println("\n Would you like to view an assignment?");
+        System.out.println("Would you like to view the details of an assignment?");
         System.out.println("\t y -> yes");
         System.out.println("\t n -> no");
 
@@ -263,7 +271,7 @@ public class HomeWokApp {
         Scanner input = new Scanner(System.in);
         String userSelection;
 
-        System.out.println("\n Please type the name of the homework you would like to view: "
+        System.out.println("\n Please select the homework you would like to view by typing in its name: "
                 + homeworkList.getListOfElementTitles());
 
         userSelection = input.nextLine();
@@ -271,12 +279,21 @@ public class HomeWokApp {
         int index = homeworkList.getListOfElementTitles().indexOf(userSelection);
         Homework userChoice = homeworkList.get(index);
 
-        System.out.println("\n Here is the subject and name:");
-        System.out.println(userChoice.getSubject() + "\t" + userChoice.getName());
-        System.out.println("\n Here's the description:");
-        List<String> descriptions = userChoice.getDescription();
-        for (String s : descriptions) {
-            System.out.println(s);
+        System.out.println("\n Subject:" + userChoice.getSubject());
+        System.out.println("\n Name: " + userChoice.getName());
+
+        DueDate date = userChoice.getDueDate();
+        int day = date.getDay();
+        int month = date.getMonth();
+        int year = date.getYear();
+        System.out.println("\n Due date in month/day/year format: " + month + "/" + day + "/" + year);
+
+        if (!((userChoice.getDescription().size()) == 0)) {
+            System.out.println("\n Description of assignment:");
+            List<String> descriptions = userChoice.getDescription();
+            for (String s : descriptions) {
+                System.out.println(s);
+            }
         }
     }
 
@@ -289,23 +306,38 @@ public class HomeWokApp {
         System.out.println("\n Please insert the subject of the homework assignment: ");
         subjectInput = input.nextLine();
 
-        System.out.println("\n Please insert the name of the homework assignment: ");
+        System.out.println("\n Please insert the title of the homework assignment: ");
         nameInput = input.nextLine();
 
+        System.out.println("\n Please enter day assignment is due: ");
+        int day = input.nextInt();
+
+        System.out.println("\n Please enter month assignment is due: ");
+        int month = input.nextInt();
+
+        System.out.println("\n Please enter year assignment is due: ");
+        int year = input.nextInt();
+
         homeworkList.addHomework(subjectInput, nameInput);
+        int indexOfHomework = homeworkList.getListOfElementSubjects().indexOf(subjectInput);
+        Homework newHomework = homeworkList.get(indexOfHomework);
+        newHomework.setDueDate(day, month, year);
+
         System.out.println("\n Homework added to assignments!");
 
         addHomeworkDescription();
     }
 
 
+    //REQUIRES: name of homework chosen is contained within list of homework assignments
     private void addHomeworkDescription() {
         Scanner input = new Scanner(System.in);
         System.out.println("\n Would you like to add a homework description?");
         String userOption = optionProviderDescription();
 
         if (userOption.equals("y")) {
-            System.out.println("Please type in name of assignment: " + homeworkList.getListOfElementTitles());
+            System.out.println("\n Please select assignment by typing its name: "
+                    + homeworkList.getListOfElementTitles());
             String selection = input.nextLine();
 
             if (homeworkList.getListOfElementTitles().contains(selection)) {
@@ -317,6 +349,7 @@ public class HomeWokApp {
 
                 chosen.addDescription(description);
                 System.out.println("\n Description added to homework!");
+
             }
         }
     }
@@ -335,6 +368,5 @@ public class HomeWokApp {
             addHomeworkAssignment();
         }
     }
-
 
 }
