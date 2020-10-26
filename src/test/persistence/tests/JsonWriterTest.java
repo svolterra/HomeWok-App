@@ -5,16 +5,14 @@ import model.Ingredient;
 import model.Recipe;
 import model.RecipeBook;
 import model.RecipeList;
-import org.junit.Before;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
 import java.io.IOException;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.fail;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class JsonWriterTest {
     private RecipeBook book;
