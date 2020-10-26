@@ -1,5 +1,6 @@
 package model.tests;
 
+import model.Description;
 import model.DueDate;
 import model.Homework;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 //Tests for the Homework class
 public class HomeworkTest {
     private Homework testHomework;
-    List<String> testDescription;
+    List<Description> testDescription;
 
 
     @BeforeEach
@@ -58,7 +59,7 @@ public class HomeworkTest {
         testHomework.addDescription("Finish phase one of term project by Wednesday");
 
         assertEquals(1, testDescription.size());
-        assertEquals("Finish phase one of term project by Wednesday", testDescription.get(0));
+        assertEquals("Finish phase one of term project by Wednesday", testDescription.get(0).getDescription());
     }
 
     @Test
@@ -70,11 +71,11 @@ public class HomeworkTest {
         testHomework.addDescription("Finish task 5 of project");
 
         assertEquals(5, testDescription.size());
-        assertEquals("Finish task 1 of project", testDescription.get(0));
-        assertEquals("Finish task 2 of project", testDescription.get(1));
-        assertEquals("Finish task 3 of project", testDescription.get(2));
-        assertEquals("Finish task 4 of project", testDescription.get(3));
-        assertEquals("Finish task 5 of project", testDescription.get(4));
+        assertEquals("Finish task 1 of project", testDescription.get(0).getDescription());
+        assertEquals("Finish task 2 of project", testDescription.get(1).getDescription());
+        assertEquals("Finish task 3 of project", testDescription.get(2).getDescription());
+        assertEquals("Finish task 4 of project", testDescription.get(3).getDescription());
+        assertEquals("Finish task 5 of project", testDescription.get(4).getDescription());
 
 
     }

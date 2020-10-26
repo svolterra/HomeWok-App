@@ -1,5 +1,6 @@
 package model.tests;
 
+import model.Description;
 import model.Ingredient;
 import model.Recipe;
 import model.RecipeList;
@@ -58,12 +59,12 @@ public class RecipeListTest {
         brownies.addDescription("Cream butter and sugar together");
         brownies.addDescription("Add eggs to butter mixture");
 
-        List<String> recipeDescription = brownies.getDescription();
+        List<Description> recipeDescription = brownies.getDescription();
 
         assertEquals(3, recipeDescription.size());
-        assertEquals("Preheat oven to 350 degrees", recipeDescription.get(0));
-        assertEquals("Cream butter and sugar together", recipeDescription.get(1));
-        assertEquals("Add eggs to butter mixture", recipeDescription.get(2));
+        assertEquals("Preheat oven to 350 degrees", recipeDescription.get(0).getDescription());
+        assertEquals("Cream butter and sugar together", recipeDescription.get(1).getDescription());
+        assertEquals("Add eggs to butter mixture", recipeDescription.get(2).getDescription());
 
     }
 

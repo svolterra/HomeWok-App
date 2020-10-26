@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 //Represents a homework assignment with a subject, name, description, and whether it has been completed or not
 public class Homework extends Element {
     private boolean homeworkDone;
@@ -40,6 +42,12 @@ public class Homework extends Element {
     //EFFECTS: returns whether homework assignment is done or not
     public boolean getHomeWorkDone() {
         return homeworkDone;
+    }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("homework name", name);
+        return json;
     }
 
 

@@ -1,20 +1,31 @@
 package ui;
 
 import model.*;
+import persistence.JsonReader;
+import persistence.JsonWriter;
+import sun.security.krb5.internal.crypto.Des;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 //Implementation of user interface of HomeWokApp.
 public class HomeWokApp {
+    private static final String JSON_STORE = "./data/recipes.json";
     private HomeworkList homeworkList;
-    private RecipeList recipeList;
     private Scanner userInput;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+    private RecipeBook recipeBook;
 
     //Note: Code format borrowed from TellerApp project
     //EFFECTS: runs HomeWokApp application
     public HomeWokApp() {
+        recipeBook = new RecipeBook("My recipes");
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runHomeWokApp();
     }
 
@@ -49,10 +60,9 @@ public class HomeWokApp {
     private void setup() {
         homeworkList = new HomeworkList();
 
-        recipeList = new RecipeList();
-        recipeList.addRecipe("Cookies");
+        recipeBook.addRecipeToBook(new Recipe("Cookies"));
 
-        Recipe cookies = recipeList.get(0);
+        Recipe cookies = recipeBook.get(0);
         cookies.addIngredient("Butter", 115);
         cookies.addIngredient("Brown sugar", 90);
         cookies.addIngredient("Caster sugar", 50);
@@ -62,13 +72,12 @@ public class HomeWokApp {
         cookies.addIngredient("Baking soda", 2);
         cookies.addIngredient("Chocolate chips", 150);
 
-        cookies.addDescription("1) Cream the butter and sugar together in a bowl.");
-        cookies.addDescription("2) Add the eggs and vanilla to butter mixture. Whisk until smooth.");
-        cookies.addDescription("3)"
-                + "Add flour, baking soda, and salt. Fold gently until fully incorporated.");
-        cookies.addDescription("4) Add chocolate chips. Fold just until fully combined.");
-        cookies.addDescription("5)"
-                + "Chill dough for an hour then place cookies in oven preheated to 350F.");
+        cookies.addDescription("Cream the butter and sugar together in a bowl.");
+        cookies.addDescription("Add the eggs and vanilla to butter mixture. Whisk until smooth.");
+        cookies.addDescription("Add flour, baking soda, and salt. Fold gently until fully incorporated."
+        );
+        cookies.addDescription("Add chocolate chips. Fold just until fully combined.");
+        cookies.addDescription("Chill dough for an hour then place cookies in oven preheated to 350F.");
 
         userInput = new Scanner(System.in);
     }
@@ -103,15 +112,21 @@ public class HomeWokApp {
     private void nextRecipeSelection() {
         String userSelection = "";
 
-        System.out.println("\n Would you like to access your recipe list or add a new recipe?");
-        System.out.println("\t l -> Access recipe list");
+        System.out.println("\n Please select one of the following:");
+        System.out.println("\t a -> Access recipe list");
         System.out.println("\t n -> Add new recipe");
+        System.out.println("\t s -> Save recipes");
+        System.out.println("\t l -> Load recipes");
 
         userSelection = userInput.next();
         userSelection = userSelection.toLowerCase();
 
-        if (userSelection.equals("l")) {
+        if (userSelection.equals("a")) {
             recipeListOptions();
+        } else if (userSelection.equals("s")) {
+            saveRecipes();
+        } else if (userSelection.equals("l")) {
+            loadRecipes();
         } else {
             addNewRecipeAndIngredients();
         }
@@ -125,7 +140,7 @@ public class HomeWokApp {
      */
     private void recipeListOptions() {
         String userSelection = "";
-        System.out.println("\n Here are your current recipes: " + recipeList.getListOfElementTitles() + "\n");
+        System.out.println("\n Here are your current recipes: " + recipeBook.getRecipeNames() + "\n");
         System.out.println("\n Would you like to view a recipe?");
         System.out.println("\t y -> yes");
         System.out.println("\t n -> no");
@@ -172,8 +187,8 @@ public class HomeWokApp {
         String recipeName = input.nextLine();
 
         Recipe newRecipe = new Recipe(recipeName);
-        recipeList.add(newRecipe);
-        int indexOfRecipe = recipeList.getIndexOf(newRecipe);
+        recipeBook.addRecipeToBook(newRecipe);
+        int indexOfRecipe = recipeBook.indexOfRecipe(newRecipe);
 
         String userOption = optionProviderIngredients();
 
@@ -184,8 +199,9 @@ public class HomeWokApp {
             System.out.println("\n How much of this ingredient (in grams) is needed for this recipe?");
             int ingredientAmount = userInput.nextInt();
 
-            Recipe userRecipe = recipeList.get(indexOfRecipe);
-            userRecipe.addIngredient(ingredientName, ingredientAmount);
+            Recipe userRecipe = recipeBook.get(indexOfRecipe);
+            Ingredient ingredient = new Ingredient(ingredientName, ingredientAmount);
+            recipeBook.addIngredientToRecipe(ingredient, userRecipe);
 
             if (optionProviderIngredients().equals("n")) {
                 System.out.println("\n Ingredients added to recipe!" + "\n");
@@ -227,18 +243,18 @@ public class HomeWokApp {
         String userOption = optionProviderDescription();
 
         if (userOption.equals("y")) {
-            System.out.println("\n Please select recipe by typing in its name: " + recipeList.getListOfElementTitles());
+            System.out.println("\n Please select recipe by typing in its name: " + recipeBook.getRecipeNames());
             String chosenRecipe = input.nextLine();
 
-            int index = recipeList.getListOfElementTitles().indexOf(chosenRecipe);
-            recipe = recipeList.get(index);
+            int index = recipeBook.getRecipeNames().indexOf(chosenRecipe);
+            recipe = recipeBook.get(index);
         }
 
         while (userOption.equals("y")) {
             System.out.println("\n Please enter direction in recipe:");
             String description = input.nextLine();
 
-            recipe.addDescription(description);
+            recipeBook.addDescriptionToRecipe(recipe, description);
 
             System.out.println("\n Direction added to recipe!");
             System.out.println("\n Would you like to add another direction?");
@@ -258,17 +274,13 @@ public class HomeWokApp {
      *          if recipe does not include an associated list of descriptions, no description is printed
      */
     private void viewRecipe() {
-        Scanner input = new Scanner(System.in);
-        String userSelection;
-
-
         System.out.println("\n Please select the recipe you would like to view by typing in its name: "
-                + recipeList.getListOfElementTitles());
+                + recipeBook.getRecipeNames());
 
-        userSelection = input.nextLine();
+        String userSelection = userRecipeSelection();
 
-        int index = recipeList.getListOfElementTitles().indexOf(userSelection);
-        Recipe userChoice = recipeList.get(index);
+        int index = recipeBook.getRecipeNames().indexOf(userSelection);
+        Recipe userChoice = recipeBook.get(index);
 
         System.out.println("\n Recipe: " + userChoice.getName() + "\n");
 
@@ -280,12 +292,25 @@ public class HomeWokApp {
 
         if (!((userChoice.getDescription().size()) == 0)) {
             System.out.println("\n Here's how you make it:");
-            List<String> descriptions = userChoice.getDescription();
+            List<Description> descriptions = userChoice.getDescription();
+            List<String> directions = new ArrayList<>();
+            for (Description d: descriptions) {
+                directions.add(d.getDescription());
+            }
 
-            for (String s : descriptions) {
-                System.out.println((descriptions.indexOf(s) + 1) + ") " + s);
+            for (String s : directions) {
+                System.out.println((directions.indexOf(s) + 1) + ") " + s);
             }
         }
+    }
+
+    private String userRecipeSelection() {
+        Scanner input = new Scanner(System.in);
+        String userSelection;
+        userSelection = input.nextLine();
+
+        return userSelection;
+
     }
 
 
@@ -352,13 +377,10 @@ public class HomeWokApp {
      *          if homework assignment does not include an associated list of descriptions, no description is printed
      */
     private void viewAssignments() {
-        Scanner input = new Scanner(System.in);
-        String userSelection;
-
         System.out.println("\n Please select the homework you would like to view by typing in its name: "
                 + homeworkList.getListOfElementTitles());
 
-        userSelection = input.nextLine();
+        String userSelection = userAssignmentChoice();
 
         int index = homeworkList.getListOfElementTitles().indexOf(userSelection);
         Homework userChoice = homeworkList.get(index);
@@ -374,11 +396,23 @@ public class HomeWokApp {
 
         if (!((userChoice.getDescription().size()) == 0)) {
             System.out.println("\n Description of assignment:");
-            List<String> descriptions = userChoice.getDescription();
-            for (String s : descriptions) {
+            List<Description> descriptions = userChoice.getDescription();
+            List<String> directions = new ArrayList<>();
+            for (Description d: descriptions) {
+                directions.add(d.getDescription());
+            }
+            for (String s : directions) {
                 System.out.println(s);
             }
         }
+    }
+
+    private String userAssignmentChoice() {
+        Scanner input = new Scanner(System.in);
+        String userSelection;
+
+        userSelection = input.nextLine();
+        return userSelection;
     }
 
 
@@ -447,6 +481,30 @@ public class HomeWokApp {
                 System.out.println("\n Description added to homework!");
 
             }
+        }
+    }
+
+    //EFFECTS: saves recipes to file
+    private void saveRecipes() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(recipeBook);
+            jsonWriter.close();
+            System.out.println("\n Saved recipes to file!");
+        } catch (FileNotFoundException e) {
+            System.out.println("\n Unable to write to file" + JSON_STORE);
+        }
+    }
+
+    //MODIFIES: this
+    //EFFECTS: loads recipes from file
+    private void loadRecipes() {
+        try {
+            recipeBook = jsonReader.read();
+            System.out.println("\n Recipes loaded!");
+        } catch (IOException e) {
+            System.out.println("\n Unable to read from file: " + JSON_STORE);
+
         }
     }
 

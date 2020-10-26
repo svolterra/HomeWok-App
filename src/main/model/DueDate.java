@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 //Represents a due date for homework assignments with a day/month/year date format
 public class DueDate {
     private int day;
@@ -29,5 +31,14 @@ public class DueDate {
     //EFFECTS: returns year of due date
     public int getYear() {
         return year;
+    }
+
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("due date day", day);
+        json.put("due date month", month);
+        json.put("due date year", year);
+        return json;
     }
 }

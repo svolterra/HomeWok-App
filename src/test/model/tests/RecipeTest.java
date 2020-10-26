@@ -1,5 +1,6 @@
 package model.tests;
 
+import model.Description;
 import model.Ingredient;
 import model.Recipe;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class RecipeTest {
     private Recipe testRecipe;
     private List<Ingredient> testIngredients;
-    private List<String> testDescription;
+    private List<Description> testDescription;
 
 
     @BeforeEach
@@ -85,7 +86,7 @@ public class RecipeTest {
         testRecipe.addDescription("Preheat oven to 350 degrees fahrenheit");
 
         assertEquals(1, testDescription.size());
-        assertEquals("Preheat oven to 350 degrees fahrenheit", testDescription.get(0));
+        assertEquals("Preheat oven to 350 degrees fahrenheit", testDescription.get(0).getDescription());
 
     }
 
@@ -99,10 +100,10 @@ public class RecipeTest {
 
         assertEquals(4, testDescription.size());
 
-        assertEquals("Cream butter with granulated and brown sugar", testDescription.get(0));
-        assertEquals("Add two eggs and vanilla", testDescription.get(1));
-        assertEquals("Add flour", testDescription.get(2));
-        assertEquals("Add chocolate chips and mix", testDescription.get(3));
+        assertEquals("Cream butter with granulated and brown sugar", testDescription.get(0).getDescription());
+        assertEquals("Add two eggs and vanilla", testDescription.get(1).getDescription());
+        assertEquals("Add flour", testDescription.get(2).getDescription());
+        assertEquals("Add chocolate chips and mix", testDescription.get(3).getDescription());
 
 
     }

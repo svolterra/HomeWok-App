@@ -2,10 +2,13 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.Homework;
+import org.json.JSONArray;
+import persistence.Writable;
 
 //A list of homework assignments
-public class HomeworkList implements ElementList {
-    private List<Homework> homeworkList;
+public class HomeworkList  {
+    protected List<Homework> homeworkList;
 
     //EFFECTS: Constructs an empty list of homework
     public HomeworkList() {
@@ -69,6 +72,14 @@ public class HomeworkList implements ElementList {
         return finalElementList;
     }
 
+    public JSONArray homeworkToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Homework h : homeworkList) {
+            jsonArray.put(h.toJson());
+        }
+        return jsonArray;
+    }
 
 
 

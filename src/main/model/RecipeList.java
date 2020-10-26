@@ -1,10 +1,12 @@
 package model;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 import java.util.List;
 
 //A list of recipes
-public class RecipeList implements ElementList {
+public class RecipeList {
     private List<Recipe> recipeList;
 
     //EFFECTS: constructs an empty list of recipes
@@ -66,9 +68,22 @@ public class RecipeList implements ElementList {
         return finalElementList;
     }
 
+
+    //EFFECTS: returns index of given recipe
     public int getIndexOf(Recipe r) {
         int index = recipeList.indexOf(r);
         return index;
+    }
+
+
+    //EFFECTS: returns recipes in list of recipes as a JSON Array
+    public JSONArray recipesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Recipe r : recipeList) {
+            jsonArray.put(r.toJson());
+        }
+        return jsonArray;
     }
 
 
