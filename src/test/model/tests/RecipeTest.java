@@ -26,7 +26,6 @@ public class RecipeTest {
 
     @Test
     public void testRecipeConstructor() {
-
         assertEquals("Cookies", testRecipe.getName());
         assertEquals(0, testIngredients.size());
         assertEquals(0, testDescription.size());
@@ -57,8 +56,10 @@ public class RecipeTest {
 
     @Test
     public void testAddSeveralIngredients() {
-        testRecipe.addIngredient("Butter", 227);
-        testRecipe.addIngredient("Flour", 380);
+        Ingredient butter = new Ingredient("Butter", 227);
+        Ingredient flour = new Ingredient("Flour", 380);
+        testRecipe.addGivenIngredient(butter);
+        testRecipe.addGivenIngredient(flour);
         testRecipe.addIngredient("Granulated sugar", 100);
         testRecipe.addIngredient("Chocolate chips", 340);
 
@@ -86,7 +87,9 @@ public class RecipeTest {
         testRecipe.addDescription("Preheat oven to 350 degrees fahrenheit");
 
         assertEquals(1, testDescription.size());
-        assertEquals("Preheat oven to 350 degrees fahrenheit", testDescription.get(0).getDescription());
+        Description description = testDescription.get(0);
+
+        assertEquals("Preheat oven to 350 degrees fahrenheit", description.getDescription());
 
     }
 
@@ -97,13 +100,16 @@ public class RecipeTest {
         testRecipe.addDescription("Add flour");
         testRecipe.addDescription("Add chocolate chips and mix");
 
-
         assertEquals(4, testDescription.size());
+        Description description0 = testDescription.get(0);
+        Description description1 = testDescription.get(1);
+        Description description2 = testDescription.get(2);
+        Description description3 = testDescription.get(3);
 
-        assertEquals("Cream butter with granulated and brown sugar", testDescription.get(0).getDescription());
-        assertEquals("Add two eggs and vanilla", testDescription.get(1).getDescription());
-        assertEquals("Add flour", testDescription.get(2).getDescription());
-        assertEquals("Add chocolate chips and mix", testDescription.get(3).getDescription());
+        assertEquals("Cream butter with granulated and brown sugar", description0.getDescription());
+        assertEquals("Add two eggs and vanilla", description1.getDescription());
+        assertEquals("Add flour", description2.getDescription());
+        assertEquals("Add chocolate chips and mix", description3.getDescription());
 
 
     }

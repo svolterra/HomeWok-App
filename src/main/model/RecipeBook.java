@@ -41,7 +41,7 @@ public class RecipeBook implements Writable {
 
     //REQUIRES: chosen recipe name already exists in recipe book
     //MODIFIES: recipe
-    //EFFECTS: adds ingredient of given name and amount to recipe of choice with
+    //EFFECTS: adds ingredient of given name and amount to recipe of choice
     public void addIngredientToRecipe(String ingredientName, int ingredientAmount,Recipe recipe) {
         int index = recipes.getIndexOf(recipe);
         Recipe chosenRecipe = recipes.get(index);

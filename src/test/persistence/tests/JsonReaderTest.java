@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 
+//NOTE: Class modeled based on: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 public class JsonReaderTest {
 
     @Test
@@ -44,20 +45,31 @@ public class JsonReaderTest {
         try {
             RecipeBook book = reader.read();
             assertEquals("My recipes", book.getBookName());
+
             RecipeList recipes = book.getRecipes();
+            Recipe cookie = recipes.get(0);
+            Recipe brownie = recipes.get(1);
+
+            assertEquals(2, recipes.size());
+            assertEquals("Cookies", cookie.getName());
+            assertEquals("Brownies", brownie.getName());
+
+            List<Ingredient> cookieIngredients = book.getIngredients(cookie);
+            List<Ingredient> brownieIngredients = book.getIngredients(brownie);
+            List<Description> cookieDirections = cookie.getDescription();
+            List<Description> brownieDirections = brownie.getDescription();
+
             assertEquals(2, recipes.size());
             assertEquals("Cookies", recipes.get(0).getName());
             assertEquals("Brownies", recipes.get(1).getName());
+            assertEquals(2, cookieIngredients.size());
+            assertEquals(1, brownieIngredients.size());
+            assertEquals("Flour", cookieIngredients.get(0).getIngredientName());
+            assertEquals("Sugar", cookieIngredients.get(1).getIngredientName());
+            assertEquals("Sugar", brownieIngredients.get(0).getIngredientName());
+            assertEquals("Add sugar to bowl", cookieDirections.get(0).getDescription());
+            assertEquals("Add sugar", brownieDirections.get(0).getDescription());
 
-//            List<Ingredient> cookieIngredients = recipes.get(0).getIngredients();
-//            List<Ingredient> brownieIngredients = recipes.get(1).getIngredients();
-//            List<Description> cookieDirections = recipes.get(0).getDescription();
-//            List<Description> brownieDirections = recipes.get(1).getDescription();
-//
-//            assertEquals("Flour", cookieIngredients.get(0));
-//            assertEquals("Chocolate chips", cookieIngredients.get(1));
-//            assertEquals("Flour", brownieIngredients.get(0));
-//            assertEquals("Sugar", brownieIngredients.get(1));
 
         } catch (IOException e) {
             fail("Unexpected exception");

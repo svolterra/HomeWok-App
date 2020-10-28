@@ -1,9 +1,6 @@
 package model.tests;
 
-import model.Description;
-import model.Ingredient;
-import model.Recipe;
-import model.RecipeBook;
+import model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -42,18 +39,22 @@ public class RecipeBookTest {
     public void testAddSeveralRecipesToBook() {
         Recipe brownies = new Recipe("Brownies");
         Recipe pudding = new Recipe("Pudding");
-
+        Recipe pavlova = new Recipe("Pavlova");
         book.addRecipeToBook(brownies);
         book.addRecipeToBook(pudding);
+        book.addRecipeToBook(pavlova);
+        RecipeList recipes = book.getRecipes();
 
-        assertEquals(3, book.getRecipeListSize());
-        assertEquals(cookies, book.get(0));
-        assertEquals(brownies, book.get(1));
+        assertEquals(4, book.getRecipeListSize());
+        assertEquals(cookies, recipes.get(0));
+        assertEquals(brownies, recipes.get(1));
         assertEquals(pudding, book.get(2));
+        assertEquals(pavlova, book.get(3));
 
         assertEquals("Cookies", book.getRecipeNames().get(0));
         assertEquals("Brownies", book.getRecipeNames().get(1));
         assertEquals("Pudding", book.getRecipeNames().get(2));
+        assertEquals("Pavlova", book.getRecipeNames().get(3));
     }
 
     @Test
@@ -100,6 +101,49 @@ public class RecipeBookTest {
     }
 
     @Test
+    public void testAddOneDescriptionToRecipe() {
+        book.addDescriptionToRecipe(cookies, "Add flour to bowl");
+        Description cookieDescription = cookies.getDescription().get(0);
+
+        assertEquals(1, cookies.getDescription().size());
+        assertEquals("Add flour to bowl", cookieDescription.getDescription());
+    }
+
+    @Test
+    public void testAddSeveralDescriptionsToSeveralRecipes() {
+        Recipe brownies = new Recipe("Brownies");
+        book.addRecipeToBook(brownies);
+
+        Description flour = new Description("Add flour to bowl");
+        Description chips = new Description("Add chocolate chips to bowl");
+
+        book.addDescriptionToRecipe(cookies, flour);
+        book.addDescriptionToRecipe(cookies, "Add sugar to flour");
+        book.addDescriptionToRecipe(cookies, chips);
+        book.addDescriptionToRecipe(brownies, chips);
+        book.addDescriptionToRecipe(brownies, "Add melted butter and fold");
+
+        List<Description> cookieDirections = cookies.getDescription();
+        List<Description> brownieDirections = brownies.getDescription();
+        Description addFlour = cookieDirections.get(0);
+        Description addSugar = cookieDirections.get(1);
+        Description addChocolate = cookieDirections.get(2);
+        Description addChips = brownieDirections.get(0);
+        Description addButter = brownieDirections.get(1);
+
+
+        assertEquals(3, cookieDirections.size());
+        assertEquals(2, brownieDirections.size());
+        assertEquals("Add flour to bowl", addFlour.getDescription());
+        assertEquals("Add sugar to flour", addSugar.getDescription());
+        assertEquals("Add chocolate chips to bowl", addChocolate.getDescription());
+        assertEquals("Add chocolate chips to bowl", addChips.getDescription());
+        assertEquals("Add melted butter and fold", addButter.getDescription());
+
+    }
+
+
+    @Test
     public void testIndexOfRecipe() {
         Recipe brownie = new Recipe("Brownies");
         book.addRecipeToBook(brownie);
@@ -130,23 +174,6 @@ public class RecipeBookTest {
 
     }
 
-    @Test
-    public void testAddDescriptionToRecipe() {
-        Description flour = new Description("Add flour to bowl");
-        Description chips = new Description("Add chocolate chips to bowl");
 
-        book.addDescriptionToRecipe(cookies, flour);
-        book.addDescriptionToRecipe(cookies, "Add sugar to flour");
-        book.addDescriptionToRecipe(cookies, chips);
-        book.addDescriptionToRecipe(cookies, "Add melted butter and fold");
-
-        List<Description> descriptionList = cookies.getDescription();
-        assertEquals(4, descriptionList.size());
-        assertEquals("Add flour to bowl", descriptionList.get(0).getDescription());
-        assertEquals("Add sugar to flour", descriptionList.get(1).getDescription());
-        assertEquals("Add chocolate chips to bowl", descriptionList.get(2).getDescription());
-        assertEquals("Add melted butter and fold", descriptionList.get(3).getDescription());
-
-    }
 
 }

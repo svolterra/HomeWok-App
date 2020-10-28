@@ -60,11 +60,14 @@ public class RecipeListTest {
         brownies.addDescription("Add eggs to butter mixture");
 
         List<Description> recipeDescription = brownies.getDescription();
+        Description description0 = recipeDescription.get(0);
+        Description description1 = recipeDescription.get(1);
+        Description description2 = recipeDescription.get(2);
 
         assertEquals(3, recipeDescription.size());
-        assertEquals("Preheat oven to 350 degrees", recipeDescription.get(0).getDescription());
-        assertEquals("Cream butter and sugar together", recipeDescription.get(1).getDescription());
-        assertEquals("Add eggs to butter mixture", recipeDescription.get(2).getDescription());
+        assertEquals("Preheat oven to 350 degrees", description0.getDescription());
+        assertEquals("Cream butter and sugar together", description1.getDescription());
+        assertEquals("Add eggs to butter mixture", description2.getDescription());
 
     }
 

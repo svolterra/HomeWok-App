@@ -24,8 +24,7 @@ The ***HomeWok*** application , whose name is derived from the combination of th
  
 
 As a user of this application, I want to be able to:
-- Access both of my existing lists of homework assignments and recipes
-- View each assignment and recipe in detail
+- Access both of my existing lists of homework assignments and recipes, and view each assignment and recipe in detail
 - Add a new homework assignment to my list along with its subject, title, due date, and an optional description to 
 provide additional details
 - Add a new recipe to my list and have the option to add multiple ingredients to the recipe along with their
@@ -34,5 +33,5 @@ provide additional details
 manually entering the numbers.
 - Be able to see my customized items appear in the program's list of homework assignments and recipes, and be able 
 to access and view them as desired.
--Save my customized list of recipes to file
--Load my customized list of recipes from file
+- Save my customized list of recipes to file, along with their associated ingredients and directions
+- Load my customized list of recipes from file

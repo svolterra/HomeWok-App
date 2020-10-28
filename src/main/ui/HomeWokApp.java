@@ -3,7 +3,6 @@ package ui;
 import model.*;
 import persistence.JsonReader;
 import persistence.JsonWriter;
-import sun.security.krb5.internal.crypto.Des;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -11,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+//NOTE: Class modeled based on: https://github.students.cs.ubc.ca/CPSC210/TellerApp.git
 //Implementation of user interface of HomeWokApp.
 public class HomeWokApp {
     private static final String JSON_STORE = "./data/recipes.json";
@@ -484,6 +484,7 @@ public class HomeWokApp {
         }
     }
 
+    //NOTE: Method modeled based on: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     //EFFECTS: saves recipes to file
     private void saveRecipes() {
         try {
@@ -496,6 +497,7 @@ public class HomeWokApp {
         }
     }
 
+    //NOTE: Method modeled based on: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     //MODIFIES: this
     //EFFECTS: loads recipes from file
     private void loadRecipes() {
