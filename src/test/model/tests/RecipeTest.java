@@ -1,12 +1,15 @@
 package model.tests;
 
-import model.Description;
-import model.Ingredient;
-import model.Recipe;
+import model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import persistence.JsonReader;
+import persistence.JsonWriter;
+import sun.security.krb5.internal.crypto.Des;
+
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -110,9 +113,52 @@ public class RecipeTest {
         assertEquals("Add two eggs and vanilla", description1.getDescription());
         assertEquals("Add flour", description2.getDescription());
         assertEquals("Add chocolate chips and mix", description3.getDescription());
+    }
+
+    @Test
+    public void testToJson() {
+        try {
+            RecipeBook book = new RecipeBook("My recipes");
+            Recipe cookies = new Recipe("Cookies");
+            Recipe scones = new Recipe("Scones");
+            Ingredient flour = new Ingredient("Flour", 100);
+            Description addFlour = new Description("Add flour");
+
+            book.addRecipeToBook(cookies);
+            book.addRecipeToBook(scones);
+            book.addIngredientToRecipe(flour, cookies);
+            book.addDescriptionToRecipe(cookies, "Add chocolate chips");
+            book.addIngredientToRecipe("Sugar", 25, scones);
+            book.addDescriptionToRecipe(scones, addFlour);
+
+            JsonWriter writer = new JsonWriter("./data/testRecipe.json");
+            writer.open();
+            writer.write(book);
+            writer.close();
+
+            JsonReader reader = new JsonReader("./data/testRecipe.json");
+            book = reader.read();
+            RecipeList recipes = book.getRecipes();
+            List<Ingredient> cookieIngredients = cookies.getIngredients();
+            List<Ingredient> sconeIngredients = scones.getIngredients();
+            List<Description> cookieDirections = cookies.getDescription();
+            List<Description> sconesDirections = scones.getDescription();
+
+            assertEquals("My recipes", book.getBookName());
+            assertEquals(2, recipes.size());
+            assertEquals("Cookies", recipes.get(0).getName());
+            assertEquals("Scones", recipes.get(1).getName());
+            assertEquals(1, cookieIngredients.size());
+            assertEquals(1, sconeIngredients.size());
+            assertEquals("Flour", cookieIngredients.get(0).getIngredientName());
+            assertEquals("Sugar", sconeIngredients.get(0).getIngredientName());
+            assertEquals("Add chocolate chips", cookieDirections.get(0).getDescription());
+            assertEquals("Add flour", sconesDirections.get(0).getDescription());
+
+        } catch (IOException e) {
+            fail("Unexpected exception");
+        }
 
 
     }
-
-
 }

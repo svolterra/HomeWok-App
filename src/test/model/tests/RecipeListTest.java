@@ -1,12 +1,12 @@
 package model.tests;
 
-import model.Description;
-import model.Ingredient;
-import model.Recipe;
-import model.RecipeList;
+import model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.IOException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -174,5 +174,37 @@ public class RecipeListTest {
         assertEquals("Scones", recipeList.get(3).getName());
     }
 
+    @Test
+    public void testToJson() {
+            try {
+                RecipeBook book = new RecipeBook("My recipes");
+                Recipe cookies = new Recipe("Cookies");
+                Recipe pavlova = new Recipe("Pavlova");
+                Recipe scones = new Recipe("Scones");
 
-}
+                book.addRecipeToBook(cookies);
+                book.addRecipeToBook(pavlova);
+                book.addRecipeToBook(scones);
+
+                JsonWriter writer = new JsonWriter("./data/testRecipeList.json");
+                writer.open();
+                writer.write(book);
+                writer.close();
+
+                JsonReader reader = new JsonReader("./data/testRecipeList.json");
+                book = reader.read();
+                assertEquals("My recipes", book.getBookName());
+                RecipeList recipes = book.getRecipes();
+                assertEquals(3, recipes.size());
+                assertEquals("Cookies", recipes.get(0).getName());
+                assertEquals("Pavlova", recipes.get(1).getName());
+                assertEquals("Scones", recipes.get(2).getName());
+
+            } catch (IOException e) {
+                fail("Unexpected exception");
+            }
+
+        }
+    }
+
+

@@ -34,11 +34,11 @@ public class DueDate {
     }
 
 
-    public JSONObject toJson() {
-        JSONObject json = new JSONObject();
-        json.put("due date day", day);
-        json.put("due date month", month);
-        json.put("due date year", year);
-        return json;
-    }
+//    public JSONObject toJson() {
+//        JSONObject json = new JSONObject();
+//        json.put("due date day", day);
+//        json.put("due date month", month);
+//        json.put("due date year", year);
+//        return json;
+//    }
 }
