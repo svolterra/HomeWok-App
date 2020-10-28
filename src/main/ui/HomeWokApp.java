@@ -354,11 +354,13 @@ public class HomeWokApp {
      */
     private void returnHomeworkList() {
         String userSelection = "";
-        System.out.println("\n Here are your current homework assignments subjects: "
-                + homeworkList.getListOfElementSubjects());
-        System.out.println("\n Here are your current homework assignment names: "
-                + homeworkList.getListOfElementTitles() + "\n");
-        System.out.println("Would you like to view the details of an assignment?");
+        List<String> subjects = homeworkList.getListOfElementSubjects();
+        List<String> names = homeworkList.getListOfElementTitles();
+        System.out.println("Here are your current homework assignments: ");
+        for (int i = 0; i < subjects.size(); i++) {
+            System.out.println((i + 1) + ") " + subjects.get(i) + ": " + names.get(i));
+        }
+        System.out.println("\n Would you like to view the details of an assignment?");
         System.out.println("\t y -> yes");
         System.out.println("\t n -> no");
 
@@ -503,7 +505,7 @@ public class HomeWokApp {
     private void loadRecipes() {
         try {
             recipeBook = jsonReader.read();
-            System.out.println("\n Recipes loaded!");
+            System.out.println("\n Recipes successfully loaded!");
         } catch (IOException e) {
             System.out.println("\n Unable to read from file: " + JSON_STORE);
 

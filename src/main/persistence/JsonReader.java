@@ -54,7 +54,7 @@ public class JsonReader {
         return book;
     }
 
-    // MODIFIES: recipe book
+    // MODIFIES: book
     // EFFECTS: parses recipes from JSON object and adds them to recipe
     private void addRecipes(RecipeBook book, JSONObject jsonObject) {
         JSONArray recipes = jsonObject.getJSONArray("recipes");
@@ -64,7 +64,7 @@ public class JsonReader {
         }
     }
 
-    // MODIFIES: recipe book
+    // MODIFIES: book
     // EFFECTS: parses recipe from JSON object and adds it to recipe book
     private void addRecipe(RecipeBook book, JSONObject jsonObject) {
         String name = jsonObject.getString("recipe name");
@@ -74,7 +74,7 @@ public class JsonReader {
         addDirections(recipe, book, jsonObject);
     }
 
-    // MODIFIES: recipe book
+    // MODIFIES: book
     // EFFECTS: parses ingredients from JSON object and adds them to recipe book
     private void addIngredients(Recipe r, RecipeBook book, JSONObject jsonObject) {
         JSONArray ingredients = jsonObject.getJSONArray("ingredients");
@@ -84,8 +84,8 @@ public class JsonReader {
         }
     }
 
-    // MODIFIES: recipe book
-    // EFFECTS: parses ingredient from JSON object and adds it to recipe book
+    // MODIFIES: book
+    // EFFECTS: parses an ingredient from JSON object and adds it to recipe book
     private void addIngredient(Recipe r, RecipeBook book, JSONObject jsonObject) {
         String name = jsonObject.getString("ingredient name");
         int amount = jsonObject.getInt("amount");
@@ -93,7 +93,7 @@ public class JsonReader {
         book.addIngredientToRecipe(ingredient, r);
     }
 
-    // MODIFIES: recipe book
+    // MODIFIES: book
     // EFFECT: parses directions from JSON object and adds them to recipe book
     private void addDirections(Recipe r, RecipeBook book, JSONObject jsonObject) {
         JSONArray directions = jsonObject.getJSONArray("descriptions");
@@ -104,8 +104,8 @@ public class JsonReader {
 
     }
 
-    // MODIFIES: recipe book
-    // EFFECT: parses direction from JSON object and adds it to recipe book
+    // MODIFIES: book
+    // EFFECT: parses a direction from JSON object and adds it to recipe book
     private void addDirection(Recipe r, RecipeBook book, JSONObject jsonObject) {
         String name = jsonObject.getString("description");
         Description description = new Description(name);

@@ -39,7 +39,7 @@ public class RecipeBook implements Writable {
         chosen.addGivenIngredient(i);
     }
 
-    //REQUIRES: chosen recipe name already exists in recipe book
+    //REQUIRES: chosen recipe already exists in recipe book
     //MODIFIES: recipe
     //EFFECTS: adds ingredient of given name and amount to recipe of choice
     public void addIngredientToRecipe(String ingredientName, int ingredientAmount,Recipe recipe) {
@@ -48,7 +48,7 @@ public class RecipeBook implements Writable {
         chosenRecipe.addIngredient(ingredientName,ingredientAmount);
     }
 
-    //EFFECTS: returns list od recipes
+    //EFFECTS: returns list of recipes
     public RecipeList getRecipes() {
         return recipes;
     }
@@ -62,7 +62,7 @@ public class RecipeBook implements Writable {
         return ingredients;
     }
 
-    //REQUIRES: chosen recipe name already exists in recipe book
+    //REQUIRES: chosen recipe already exists in recipe book
     //MODIFIES: recipe
     //EFFECTS: adds given description to chosen recipe
     public void addDescriptionToRecipe(Recipe recipe, Description description) {
@@ -70,7 +70,7 @@ public class RecipeBook implements Writable {
         recipe.addDescription(d);
     }
 
-    //REQUIRES: chosen recipe name already exists in recipe book
+    //REQUIRES: chosen recipe already exists in recipe book
     //MODIFIES: recipe
     //EFFECTS: adds given description to chosen recipe as a string
     public void addDescriptionToRecipe(Recipe recipe, String description) {
@@ -88,11 +88,13 @@ public class RecipeBook implements Writable {
         return recipes.getListOfElementTitles();
     }
 
+    //REQUIRES: chosen recipe already exists in recipe book
     //EFFECTS: returns index of given index
     public int indexOfRecipe(Recipe r) {
         return recipes.getIndexOf(r);
     }
 
+    //REQUIRES: i > 0
     //EFFECTS: returns recipe at given index
     public Recipe get(int i) {
         return recipes.get(i);
