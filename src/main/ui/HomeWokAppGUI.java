@@ -1,12 +1,11 @@
 package ui;
 
 
-import model.Homework;
 import model.Recipe;
 import model.RecipeBook;
 import persistence.JsonReader;
 import persistence.JsonWriter;
-import ui.Sound.SoundUtils;
+import ui.sound.SoundUtils;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.swing.*;
@@ -17,11 +16,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 //Main class to run the HomeWokApp
-//Class modeled based on: TextSamplerDemo,
-//                        ColorChooserDemo
-//                        SimpleDrawingPlayer
-//                        https://www.javatpoint.com/how-to-open-a-file-in-java
-//                        https://www.javatpoint.com/java-jtable
+//Class modeled based on:
+// https://docs.oracle.com/javase/tutorial/displayCode.html?code=https://docs.oracle.com/javase/tutorial/uiswing/examples/components/TextSamplerDemoProject/src/components/TextSamplerDemo.java
+// https://docs.oracle.com/javase/tutorial/displayCode.html?code=https://docs.oracle.com/javase/tutorial/uiswing/examples/components/ButtonDemoProject/src/components/ButtonDemo.java
+// https://github.students.cs.ubc.ca/CPSC210/SimpleDrawingPlayer-Complete.git
+// https://stackoverflow.com/questions/3780406/how-to-play-a-sound-alert-in-a-java-application
 public class HomeWokAppGUI extends JFrame implements ActionListener {
     public static final int WIDTH = 700;
     public static final int HEIGHT = 600;
