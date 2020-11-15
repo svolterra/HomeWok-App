@@ -41,6 +41,15 @@ public class Element  {
         return descriptions;
     }
 
+    // EFFECTS: returns recipe descriptions as list of string
+    public List<String> getDescriptionString() {
+        List<String> directions = new ArrayList<>();
+        for (Description d: descriptions) {
+            directions.add(d.getDescription());
+        }
+        return directions;
+    }
+
 
 }
 

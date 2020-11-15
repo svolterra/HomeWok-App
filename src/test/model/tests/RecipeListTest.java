@@ -175,6 +175,22 @@ public class RecipeListTest {
     }
 
     @Test
+    public void testGetList() {
+        Recipe cookies = new Recipe("Cookies");
+        Recipe scones = new Recipe("Scones");
+
+        recipeList.add(cookies);
+        recipeList.add(scones);
+
+        List<Recipe> listOfRecipe = recipeList.getList();
+
+        assertEquals(brownies, listOfRecipe.get(0));
+        assertEquals(cookies, listOfRecipe.get(1));
+        assertEquals(scones, listOfRecipe.get(2));
+
+    }
+
+    @Test
     public void testToJson() {
             try {
                 RecipeBook book = new RecipeBook("My recipes");

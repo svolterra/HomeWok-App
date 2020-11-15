@@ -26,6 +26,11 @@ public class RecipeList {
         recipeList.add(new Recipe(recipeName));
     }
 
+    //EFFECTS: returns list of recipes
+    public List<Recipe> getList() {
+        return recipeList;
+    }
+
 
     //EFFECTS: returns size of recipe list
     public int size() {

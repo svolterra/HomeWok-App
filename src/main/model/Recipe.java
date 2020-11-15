@@ -48,7 +48,26 @@ public class Recipe extends Element implements Writable {
         return ingredients;
     }
 
+    // EFFECTS: returns list of ingredient names
+    public List<String> getIngredientNames() {
+        List<String> ingredientNames = new ArrayList<>();
+        for (Ingredient i : ingredients) {
+            ingredientNames.add(i.getIngredientName());
+        }
+        return ingredientNames;
+    }
 
+    // EFFECTS: returns list of ingredient amounts
+    public List<Integer> getIngredientAmount() {
+        List<Integer> ingredientAmount = new ArrayList<>();
+        for (Ingredient i : ingredients) {
+            ingredientAmount.add(i.getAmountNeeded());
+        }
+        return ingredientAmount;
+    }
+
+
+    // EFFECTS: returns recipes as JSON objects
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -80,7 +99,6 @@ public class Recipe extends Element implements Writable {
 
         return jsonArray;
     }
-
 
 
 }

@@ -61,27 +61,28 @@ public class RecipeTest {
     public void testAddSeveralIngredients() {
         Ingredient butter = new Ingredient("Butter", 227);
         Ingredient flour = new Ingredient("Flour", 380);
+
         testRecipe.addGivenIngredient(butter);
         testRecipe.addGivenIngredient(flour);
         testRecipe.addIngredient("Granulated sugar", 100);
         testRecipe.addIngredient("Chocolate chips", 340);
 
-        Ingredient ingredient0 = testIngredients.get(0);
-        Ingredient ingredient1 = testIngredients.get(1);
-        Ingredient ingredient2 = testIngredients.get(2);
-        Ingredient ingredient3 = testIngredients.get(3);
 
         assertEquals(4, testIngredients.size());
 
-        assertEquals("Butter", ingredient0.getIngredientName());
-        assertEquals("Flour", ingredient1.getIngredientName());
-        assertEquals("Granulated sugar", ingredient2.getIngredientName());
-        assertEquals("Chocolate chips", ingredient3.getIngredientName());
+        List<String> ingredientNames = testRecipe.getIngredientNames();
 
-        assertEquals(227, ingredient0.getAmountNeeded());
-        assertEquals(380, ingredient1.getAmountNeeded());
-        assertEquals(100, ingredient2.getAmountNeeded());
-        assertEquals(340, ingredient3.getAmountNeeded());
+        assertEquals("Butter", ingredientNames.get(0));
+        assertEquals("Flour", ingredientNames.get(1));
+        assertEquals("Granulated sugar", ingredientNames.get(2));
+        assertEquals("Chocolate chips", ingredientNames.get(3));
+
+        List<Integer> ingredientAmount = testRecipe.getIngredientAmount();
+
+        assertEquals(227, ingredientAmount.get(0));
+        assertEquals(380, ingredientAmount.get(1));
+        assertEquals(100, ingredientAmount.get(2));
+        assertEquals(340, ingredientAmount.get(3));
 
     }
 
@@ -104,15 +105,14 @@ public class RecipeTest {
         testRecipe.addDescription("Add chocolate chips and mix");
 
         assertEquals(4, testDescription.size());
-        Description description0 = testDescription.get(0);
-        Description description1 = testDescription.get(1);
-        Description description2 = testDescription.get(2);
-        Description description3 = testDescription.get(3);
 
-        assertEquals("Cream butter with granulated and brown sugar", description0.getDescription());
-        assertEquals("Add two eggs and vanilla", description1.getDescription());
-        assertEquals("Add flour", description2.getDescription());
-        assertEquals("Add chocolate chips and mix", description3.getDescription());
+        List<String> recipeDescriptionString = testRecipe.getDescriptionString();
+
+
+        assertEquals("Cream butter with granulated and brown sugar", recipeDescriptionString.get(0));
+        assertEquals("Add two eggs and vanilla",  recipeDescriptionString.get(1));
+        assertEquals("Add flour",  recipeDescriptionString.get(2));
+        assertEquals("Add chocolate chips and mix",  recipeDescriptionString.get(3));
     }
 
     @Test
