@@ -5,26 +5,24 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 
-// Class based on: https://stackoverflow.com/questions/3780406/how-to-play-a-sound-alert-in-a-java-application
-// Represents a sound utility to add sound with associated tone
+// CLass modeled based on: https://stackoverflow.com/questions/3780406/how-to-play-a-sound-alert-in-a-java-application
+// Represents a sound utilities class to add sound effects to program
 public class SoundUtils {
 
     public static float SAMPLE_RATE = 8000f;
 
-    public static void tone(int hz, int msecs)
-            throws LineUnavailableException {
+    public static void tone(int hz, int msecs) throws LineUnavailableException {
         tone(hz, msecs, 1.0);
     }
 
-    public static void tone(int hz, int msecs, double vol)
-            throws LineUnavailableException {
+    public static void tone(int hz, int msecs, double vol) throws LineUnavailableException {
         byte[] buf = new byte[1];
         AudioFormat af =
                 new AudioFormat(
-                        SAMPLE_RATE, // sampleRate
-                        8,           // sampleSizeInBits
-                        1,           // channels
-                        true,        // signed
+                        SAMPLE_RATE,             // sampleRate
+                        8,       // sampleSizeInBits
+                        1,             // channels
+                        true,           // signed
                         false);      // bigEndian
         SourceDataLine sdl = AudioSystem.getSourceDataLine(af);
         sdl.open(af);
@@ -38,5 +36,4 @@ public class SoundUtils {
         sdl.stop();
         sdl.close();
     }
-
 }

@@ -44,11 +44,6 @@ public class Homework extends Element {
         return homeworkDone;
     }
 
-//    public JSONObject toJson() {
-//        JSONObject json = new JSONObject();
-//        json.put("homework name", name);
-//        return json;
-//    }
 
 
 }

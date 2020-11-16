@@ -19,6 +19,8 @@ import java.io.IOException;
 //Class modeled based on:
 // https://docs.oracle.com/javase/tutorial/displayCode.html?code=https://docs.oracle.com/javase/tutorial/uiswing/examples/components/TextSamplerDemoProject/src/components/TextSamplerDemo.java
 // https://docs.oracle.com/javase/tutorial/displayCode.html?code=https://docs.oracle.com/javase/tutorial/uiswing/examples/components/ButtonDemoProject/src/components/ButtonDemo.java
+// https://docs.oracle.com/javase/tutorial/displayCode.html?code=https://docs.oracle.com/javase/tutorial/uiswing/examples/components/TextDemoProject/src/components/TextDemo.java
+// https://docs.oracle.com/javase/tutorial/uiswing/examples/components/ColorChooserDemoProject/src/components/ColorChooserDemo.java
 // https://github.students.cs.ubc.ca/CPSC210/SimpleDrawingPlayer-Complete.git
 // https://stackoverflow.com/questions/3780406/how-to-play-a-sound-alert-in-a-java-application
 public class HomeWokAppGUI extends JFrame implements ActionListener {
@@ -46,6 +48,7 @@ public class HomeWokAppGUI extends JFrame implements ActionListener {
     protected JTextArea centerArea;
     private JTextArea ingredientTextArea;
     private JTextArea directionTextArea;
+    private JTextArea homeworkTextArea;
 
     private JButton setName;
     private JButton setIngredients;
@@ -113,11 +116,11 @@ public class HomeWokAppGUI extends JFrame implements ActionListener {
 
         addRecipeButton(buttonArea);
 
-        addSaveButton(buttonArea);
-
         addViewRecipeButton(buttonArea);
 
         addLoadButton(buttonArea, "Load Recipes", "load");
+
+        addSaveButton(buttonArea);
 
         addHomeworkButton(buttonArea);
 
@@ -203,9 +206,6 @@ public class HomeWokAppGUI extends JFrame implements ActionListener {
         }
         if (e.getActionCommand().equals("set subject")) {
             setSetHomeworkButtonFunction();
-        }
-        if (e.getActionCommand().equals("set due date")) {
-            setHomeworkDueDateFunction();
         }
     }
 
@@ -418,7 +418,7 @@ public class HomeWokAppGUI extends JFrame implements ActionListener {
         JLabel recipeBookText = new JLabel("Recipe Book \n \n");
         recipeBookText.setFont(new Font("SansSerif", Font.BOLD, 15));
         recipeBookText.setBounds(300, 0, 150, 25);
-        recipeBookText.setForeground(Color.pink);
+        recipeBookText.setForeground(new Color(0xD7638F));
         recipeArea.add(recipeBookText);
 
         recipeArea.setText("");
@@ -448,8 +448,8 @@ public class HomeWokAppGUI extends JFrame implements ActionListener {
     // MODIFIES: centerArea, setSubjectButton
     // EFFECTS: creates a set title button and adds it to gui
     private void initializeSetSubjectButton() {
-        setSubjectButton = new JButton("Set Title");
-        setSubjectButton.setBounds(330, 52, 100, 25);
+        setSubjectButton = new JButton("Add Homework Assignment");
+        setSubjectButton.setBounds(150, 165, 200, 25);
         setSubjectButton.setActionCommand("set subject");
         setSubjectButton.addActionListener(this);
         centerArea.add(setSubjectButton);
@@ -457,7 +457,7 @@ public class HomeWokAppGUI extends JFrame implements ActionListener {
 
 
 
-    // MODIFIES: subjectLabel, centerArea
+    // MODIFIES: subjectLabel, subjectTextField, homeworkSubjectLabel, centerArea
     // EFFECTS: adds Homework Title: text and associated text field to gui
     //          sets up set subject button
     private void setHomeworkSubject() {
@@ -469,54 +469,19 @@ public class HomeWokAppGUI extends JFrame implements ActionListener {
         subjectTextField.setBounds(120, 50, 200, 25);
         centerArea.add(subjectTextField);
 
+        homeworkSubjectLabel = new JLabel("Homework Assignments");
+        homeworkSubjectLabel.setBounds(163, 250, 400, 25);
+        homeworkSubjectLabel.setForeground(new Color(0x547ED2));
+        homeworkSubjectLabel.setFont(new Font("SansSerif", Font.BOLD, 15));
+        centerArea.add(homeworkSubjectLabel);
+
+        homeworkTextArea = new JTextArea();
+        homeworkTextArea.setBounds(80, 300, 500, 400);
+        homeworkTextArea.setEditable(false);
+
         initializeSetSubjectButton();
 
     }
-
-
-    // MODIFIES: dueDateLabelTextArea, dueDateText, centerArea
-    // EFFECTS: adds a Due Date: text to gui
-    //          sets due date following the click of the set due date button and adds it to gui
-    private void setHomeworkDueDateFunction() {
-        JLabel dueDateLabelTextArea = new JLabel("Due Date: ");
-        dueDateLabelTextArea.setBounds(120, 310, 200, 25);
-
-        String dueDateText = dueDate.getText();
-        JLabel setDueDateText = new JLabel(dueDateText);
-        setDueDateText.setBounds(250, 310, 200, 25);
-
-        centerArea.add(dueDateLabelTextArea);
-        centerArea.add(setDueDateText);
-
-    }
-
-    // MODIFIES: homeworkSubjectLabel, homeworkSubject, centerArea
-    // EFFECTS: adds the homework title to gui following the click of Set Title button
-    //          modifies font of homework title
-    private void setSetHomeworkButtonFunction() {
-        homeworkSubjectLabel = new JLabel("");
-        homeworkSubjectLabel.setBounds(150, 270, 400, 25);
-        centerArea.add(homeworkSubjectLabel);
-
-        String homeworkSubject = subjectTextField.getText();
-
-        homeworkSubjectLabel.setText(homeworkSubject);
-        homeworkSubjectLabel.setForeground(Color.pink);
-        homeworkSubjectLabel.setFont(new Font("SansSerif", Font.BOLD, 15));
-
-    }
-
-    // MODIFIES: setDueDateButton, centerArea
-    // EFFECTS: creates a set due date button and adds it to gui
-    private void initializeDueDateButton() {
-        setDueDateButton = new JButton("Set Due Date");
-        setDueDateButton.setBounds(320, 105, 125, 25);
-        setDueDateButton.setActionCommand("set due date");
-        setDueDateButton.addActionListener(this);
-        centerArea.add(setDueDateButton);
-    }
-
-
 
     // MODIFIES: dueDateLabel, dueDate, centerArea
     // EFFECTS: add Due Date: text to gui and associated text field
@@ -530,8 +495,22 @@ public class HomeWokAppGUI extends JFrame implements ActionListener {
 
         centerArea.add(dueDate);
 
-        initializeDueDateButton();
     }
+
+    // MODIFIES: homeworkSubject, dueDateText, centerArea
+    // EFFECTS: adds the homework title  and due date to gui following the click of Add Homework Assignment button
+    private void setSetHomeworkButtonFunction() {
+        String homeworkSubject = subjectTextField.getText();
+        String dueDateText = dueDate.getText();
+        homeworkTextArea.append(homeworkSubject + "\t Due: " + dueDateText + "\n \n");
+        subjectTextField.selectAll();
+        dueDate.selectAll();
+
+        homeworkTextArea.setCaretPosition(homeworkTextArea.getDocument().getLength());
+        centerArea.add(homeworkTextArea);
+    }
+
+
 
     // EFFECTS: initializes set title homework button, and the set due date button
     //          and adds associated text fields and functions

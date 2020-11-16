@@ -72,16 +72,6 @@ public class HomeworkList  {
         return finalElementList;
     }
 
-//    public JSONArray homeworkToJson() {
-//        JSONArray jsonArray = new JSONArray();
-//
-//        for (Homework h : homeworkList) {
-//            jsonArray.put(h.toJson());
-//        }
-//        return jsonArray;
-//    }
-
-
 
 }
 
