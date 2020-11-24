@@ -9,7 +9,11 @@ public class DueDate {
     private int year;
 
 
-    //EFFECTS: constructs a due date of given day, month, and year
+    /*
+     *EFFECTS: constructs a due date of given day, month, and year;
+     *         if day <= 0 or day > 31, or if month <= 0 or month > 12
+     *         or if year <= 0, throws InvalidDateException
+     */
     public DueDate(int day, int month, int year) throws InvalidDateException {
         if (day <= 0 || month <= 0 || year <= 0 || day > 31 || month > 12) {
             throw new InvalidDateException();
