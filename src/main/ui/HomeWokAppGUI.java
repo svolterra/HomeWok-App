@@ -53,7 +53,6 @@ public class HomeWokAppGUI extends JFrame implements ActionListener {
     private JButton setName;
     private JButton setIngredients;
     private JButton setSubjectButton;
-    private JButton setDueDateButton;
 
     private JFormattedTextField dueDate;
 
@@ -105,9 +104,8 @@ public class HomeWokAppGUI extends JFrame implements ActionListener {
     }
 
 
-
-     // MODIFIES: buttonArea
-     // EFFECTS:  adds buttons to gui
+    // MODIFIES: buttonArea
+    // EFFECTS:  adds buttons to gui
     private void addButtons() {
         JPanel buttonArea = new JPanel();
         buttonArea.setLayout(new GridLayout(0, 1));
@@ -324,7 +322,6 @@ public class HomeWokAppGUI extends JFrame implements ActionListener {
     }
 
 
-
     /*
      * MODIFIES: direction, directionText, directionTextArea, centerArea
      * EFFECTS: adds Directions: text to gui
@@ -347,7 +344,6 @@ public class HomeWokAppGUI extends JFrame implements ActionListener {
         centerArea.add(directions);
         centerArea.add(directionText);
     }
-
 
 
     // MODIFIES: directions, amountText
@@ -412,7 +408,7 @@ public class HomeWokAppGUI extends JFrame implements ActionListener {
         recipeFrame.add(recipeFrameScrollPane);
 
         JTextArea recipeArea = new JTextArea();
-        recipeArea.setBounds(10,100, 300, 300);
+        recipeArea.setBounds(10, 100, 300, 300);
         recipeFrame.add(recipeArea);
 
         JLabel recipeBookText = new JLabel("Recipe Book \n \n");
@@ -454,7 +450,6 @@ public class HomeWokAppGUI extends JFrame implements ActionListener {
         setSubjectButton.addActionListener(this);
         centerArea.add(setSubjectButton);
     }
-
 
 
     // MODIFIES: subjectLabel, subjectTextField, homeworkSubjectLabel, centerArea
@@ -509,7 +504,6 @@ public class HomeWokAppGUI extends JFrame implements ActionListener {
         homeworkTextArea.setCaretPosition(homeworkTextArea.getDocument().getLength());
         centerArea.add(homeworkTextArea);
     }
-
 
 
     // EFFECTS: initializes set title homework button, and the set due date button

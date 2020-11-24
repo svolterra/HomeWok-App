@@ -2,12 +2,9 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-import model.Homework;
-import org.json.JSONArray;
-import persistence.Writable;
 
 //A list of homework assignments
-public class HomeworkList  {
+public class HomeworkList {
     protected List<Homework> homeworkList;
 
     //EFFECTS: Constructs an empty list of homework

@@ -3,6 +3,7 @@ package model.tests;
 import model.Description;
 import model.DueDate;
 import model.Homework;
+import model.exceptions.InvalidDateException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -32,8 +33,13 @@ public class HomeworkTest {
     }
 
     @Test
-    public void testSetDueDate() {
-        testHomework.setDueDate(14, 10, 2020);
+    public void testSetValidDueDate() {
+        try {
+            testHomework.setDueDate(14, 10, 2020);
+            // pass
+        } catch (InvalidDateException e) {
+            fail();
+        }
 
         DueDate updatedDueDate = testHomework.getDueDate();
         assertEquals(14, updatedDueDate.getDay());
@@ -43,14 +49,24 @@ public class HomeworkTest {
     }
 
     @Test
+    public void testSetInvalidDueDateExceptionThrown() {
+        try {
+            testHomework.setDueDate(0, 0, 0);
+            fail();
+        } catch (InvalidDateException e) {
+           // pass
+        }
+    }
+
+    @Test
     public void testIsHomeworkDoneTrue() {
-        testHomework.isHomeworkDone(true);
+        testHomework.setRepeat(true);
         assertTrue(testHomework.getHomeWorkDone());
     }
 
     @Test
     public void testIsHomeworkDoneFalse() {
-        testHomework.isHomeworkDone(false);
+        testHomework.setRepeat(false);
         assertFalse(testHomework.getHomeWorkDone());
     }
 

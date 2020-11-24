@@ -1,6 +1,7 @@
 package ui;
 
 import model.*;
+import model.exceptions.InvalidDateException;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -447,7 +448,11 @@ public class HomeWokApp {
         homeworkList.addHomework(subjectInput, nameInput);
         int indexOfHomework = homeworkList.getListOfElementSubjects().indexOf(subjectInput);
         Homework newHomework = homeworkList.get(indexOfHomework);
-        newHomework.setDueDate(day, month, year);
+        try {
+            newHomework.setDueDate(day, month, year);
+        } catch (InvalidDateException e) {
+            System.out.println("Invalid date!");
+        }
 
         System.out.println("\n Homework added to assignments!");
 

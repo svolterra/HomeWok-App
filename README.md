@@ -35,3 +35,16 @@ manually entering the numbers.
 to access and view them as desired.
 - Save my customized list of recipes to file, along with their associated ingredients and directions
 - Load my customized list of recipes from file
+
+## Phase 4: Task 2
+
+Tested and designed robust DueDate class in model package :
+
+- Robust method in DueDate class: DueDate constructor
+- Exception thrown: InvalidDateException
+- Exception test class: DueDateTest class 
+
+The DueDate constructor's thrown InvalidDateException is caught in the HomeWokApp class
+
+
+

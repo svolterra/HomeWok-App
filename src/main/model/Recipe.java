@@ -22,7 +22,8 @@ public class Recipe extends Element implements Writable {
     //MODIFIES: this
     //EFFECTS: sets makeAgain to true if b is true, false otherwise
     //         true: will make again, false: will not make again
-    public void setMakeAgain(boolean b) {
+    @Override
+    public void setRepeat(Boolean b) {
         makeAgain = b;
     }
 

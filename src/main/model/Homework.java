@@ -1,5 +1,6 @@
 package model;
 
+import model.exceptions.InvalidDateException;
 import org.json.JSONObject;
 
 //Represents a homework assignment with a subject, name, description, and whether it has been completed or not
@@ -18,13 +19,14 @@ public class Homework extends Element {
 
     //MODIFIES: this
     //EFFECTS: sets assignment due date
-    public void setDueDate(int day, int month, int year) {
+    public void setDueDate(int day, int month, int year) throws InvalidDateException {
         dueDate = new DueDate(day, month, year);
     }
 
     //MODIFIES: this
     //EFFECTS: sets homework status to done if true, false otherwise
-    public void isHomeworkDone(Boolean b) {
+    @Override
+    public void setRepeat(Boolean b) {
         homeworkDone = b;
     }
 

@@ -1,6 +1,6 @@
 package model;
 
-import org.json.JSONObject;
+import model.exceptions.InvalidDateException;
 
 //Represents a due date for homework assignments with a day/month/year date format
 public class DueDate {
@@ -8,11 +8,12 @@ public class DueDate {
     private int month;
     private int year;
 
-    //REQUIRES: day, month, and year > 0
-    //          day <= 31
-    //          month <= 12
+
     //EFFECTS: constructs a due date of given day, month, and year
-    public DueDate(int day, int month, int year) {
+    public DueDate(int day, int month, int year) throws InvalidDateException {
+        if (day <= 0 || month <= 0 || year <= 0 || day > 31 || month > 12) {
+            throw new InvalidDateException();
+        }
         this.day = day;
         this.month = month;
         this.year = year;
@@ -33,12 +34,4 @@ public class DueDate {
         return year;
     }
 
-
-//    public JSONObject toJson() {
-//        JSONObject json = new JSONObject();
-//        json.put("due date day", day);
-//        json.put("due date month", month);
-//        json.put("due date year", year);
-//        return json;
-//    }
 }

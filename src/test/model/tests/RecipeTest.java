@@ -5,7 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import persistence.JsonReader;
 import persistence.JsonWriter;
-import sun.security.krb5.internal.crypto.Des;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -36,13 +35,13 @@ public class RecipeTest {
 
     @Test
     public void testSetMakeAgainFalse() {
-        testRecipe.setMakeAgain(false);
+        testRecipe.setRepeat(false);
         assertFalse(testRecipe.willMakeAgain());
     }
 
     @Test
     public void testSetMakeAgainTrue() {
-        testRecipe.setMakeAgain(true);
+        testRecipe.setRepeat(true);
         assertTrue(testRecipe.willMakeAgain());
     }
 
