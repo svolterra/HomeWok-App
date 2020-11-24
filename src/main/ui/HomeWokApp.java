@@ -423,7 +423,8 @@ public class HomeWokApp {
      * MODIFIES: this
      * EFFECTS: allows user to initialize a new homework assignment and enter the assignment's subject, name,
      *          and due date, including the day, month, and year assignment is due, then adds it to existing homework
-     *          list along with associated details
+     *          list along with associated details; catches InvalidDateException
+     *
      */
     private void addHomeworkAssignment() {
         Scanner input = new Scanner(System.in);
