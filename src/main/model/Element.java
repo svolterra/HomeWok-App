@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //Represents a non-primitive element of a list with a description and name
-public abstract class Element  {
+public class Element  {
     protected String name;
     protected List<Description> descriptions;
 
@@ -49,9 +49,6 @@ public abstract class Element  {
         return directions;
     }
 
-    //MODIFIES: this
-    //EFFECTS: sets repeat to true if element is done or will be done again; false otherwise
-    public abstract void setRepeat(Boolean b);
 
 
 }

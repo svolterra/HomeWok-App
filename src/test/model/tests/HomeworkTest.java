@@ -28,7 +28,6 @@ public class HomeworkTest {
         assertEquals("CPSC 210", testHomework.getSubject());
         assertEquals("Project Phase One", testHomework.getName());
         assertEquals(0, testDescription.size());
-        assertFalse(testHomework.getHomeWorkDone());
 
     }
 
@@ -58,17 +57,6 @@ public class HomeworkTest {
         }
     }
 
-    @Test
-    public void testIsHomeworkDoneTrue() {
-        testHomework.setRepeat(true);
-        assertTrue(testHomework.getHomeWorkDone());
-    }
-
-    @Test
-    public void testIsHomeworkDoneFalse() {
-        testHomework.setRepeat(false);
-        assertFalse(testHomework.getHomeWorkDone());
-    }
 
     @Test
     public void testAddOneDescription() {

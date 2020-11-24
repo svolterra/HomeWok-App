@@ -33,17 +33,6 @@ public class RecipeTest {
         assertEquals(0, testDescription.size());
     }
 
-    @Test
-    public void testSetMakeAgainFalse() {
-        testRecipe.setRepeat(false);
-        assertFalse(testRecipe.willMakeAgain());
-    }
-
-    @Test
-    public void testSetMakeAgainTrue() {
-        testRecipe.setRepeat(true);
-        assertTrue(testRecipe.willMakeAgain());
-    }
 
     @Test
     public void testAddOneIngredient() {

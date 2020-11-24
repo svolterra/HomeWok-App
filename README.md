@@ -38,13 +38,29 @@ to access and view them as desired.
 
 ## Phase 4: Task 2
 
-Tested and designed robust DueDate class in model package :
+Tested and designed a robust class in the model package :
 
+- Robust class: DueDate class 
 - Robust method in DueDate class: DueDate constructor
 - Exception thrown: InvalidDateException
-- Exception test class: DueDateTest class 
+- Exception tested in: DueDateTest class 
+- Exception caught in: HomeWokApp class
 
-The DueDate constructor's thrown InvalidDateException is caught in the HomeWokApp class
+
+## Phase 4: Task 3
+
+To improve the design of my code I could have: 
+
+- designed and implemented a superclass that contained the methods common to both RecipeList and HomeworkList, and 
+made RecipeList and HomeworkList subclasses that extended it, to increase the level of abstraction in my code.
+-  combined RecipeList and RecipeBook into one class, as opposed to creating two separate classes. By doing so, the 
+list of recipes would inherit the methods of the List superclass instead of needing to be re-implemented, and the 
+coupling between classes would decrease.
+ - improved the robustness of my HomeWokApp class methods such that the program does not crash in the event of an 
+ invalid user input, and such that the user would be aware of invalid inputs.  
+ -  further refactored any duplicated or similar code in the HomeWokApp and HomeWokAppGUI class' methods into separate 
+ helper methods such that the code would be more concise and easier to read and understand.
+  
 
 
 

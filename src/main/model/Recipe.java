@@ -11,20 +11,11 @@ import java.util.List;
 // and whether user will make recipe again or not
 public class Recipe extends Element implements Writable {
     private List<Ingredient> ingredients;
-    private boolean makeAgain;
 
     //EFFECTS: Constructs a recipe with given name, empty description and ingredient list
     public Recipe(String name) {
         super(name);
         ingredients = new ArrayList<>();
-    }
-
-    //MODIFIES: this
-    //EFFECTS: sets makeAgain to true if b is true, false otherwise
-    //         true: will make again, false: will not make again
-    @Override
-    public void setRepeat(Boolean b) {
-        makeAgain = b;
     }
 
     //MODIFIES: this
@@ -39,10 +30,6 @@ public class Recipe extends Element implements Writable {
         ingredients.add(new Ingredient(name, amount));
     }
 
-    //EFFECTS: returns whether user will make recipe again
-    public boolean willMakeAgain() {
-        return makeAgain;
-    }
 
     //EFFECTS: returns list of ingredients
     public List<Ingredient> getIngredients() {

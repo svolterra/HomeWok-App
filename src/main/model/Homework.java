@@ -5,7 +5,6 @@ import org.json.JSONObject;
 
 //Represents a homework assignment with a subject, name, description, and whether it has been completed or not
 public class Homework extends Element {
-    private boolean homeworkDone;
     private String subject;
     private DueDate dueDate;
 
@@ -14,7 +13,6 @@ public class Homework extends Element {
     public Homework(String subject, String name) {
         super(name);
         this.subject = subject;
-        homeworkDone = false;
     }
 
     //MODIFIES: this
@@ -23,12 +21,6 @@ public class Homework extends Element {
         dueDate = new DueDate(day, month, year);
     }
 
-    //MODIFIES: this
-    //EFFECTS: sets homework status to done if true, false otherwise
-    @Override
-    public void setRepeat(Boolean b) {
-        homeworkDone = b;
-    }
 
     //EFFECTS: returns subject of homework assignment
     public String getSubject() {
@@ -40,12 +32,6 @@ public class Homework extends Element {
     public DueDate getDueDate() {
         return dueDate;
     }
-
-    //EFFECTS: returns whether homework assignment is done or not
-    public boolean getHomeWorkDone() {
-        return homeworkDone;
-    }
-
 
 
 }
