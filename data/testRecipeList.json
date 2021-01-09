@@ -1,0 +1,20 @@
+{
+    "recipes": [
+        {
+            "recipe name": "Cookies",
+            "ingredients": [],
+            "descriptions": []
+        },
+        {
+            "recipe name": "Pavlova",
+            "ingredients": [],
+            "descriptions": []
+        },
+        {
+            "recipe name": "Scones",
+            "ingredients": [],
+            "descriptions": []
+        }
+    ],
+    "name": "My recipes"
+}

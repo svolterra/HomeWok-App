@@ -1,0 +1,21 @@
+{
+    "recipes": [
+        {
+            "recipe name": "Cookies",
+            "ingredients": [{
+                "amount": 100,
+                "ingredient name": "Flour"
+            }],
+            "descriptions": [{"description": "Add chocolate chips"}]
+        },
+        {
+            "recipe name": "Scones",
+            "ingredients": [{
+                "amount": 25,
+                "ingredient name": "Sugar"
+            }],
+            "descriptions": [{"description": "Add flour"}]
+        }
+    ],
+    "name": "My recipes"
+}

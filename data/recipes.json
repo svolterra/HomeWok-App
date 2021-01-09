@@ -1,0 +1,81 @@
+{
+    "recipes": [
+        {
+            "recipe name": "Cookies",
+            "ingredients": [
+                {
+                    "amount": 115,
+                    "ingredient name": "Butter"
+                },
+                {
+                    "amount": 90,
+                    "ingredient name": "Brown sugar"
+                },
+                {
+                    "amount": 50,
+                    "ingredient name": "Caster sugar"
+                },
+                {
+                    "amount": 4,
+                    "ingredient name": "Vanilla"
+                },
+                {
+                    "amount": 50,
+                    "ingredient name": "Eggs"
+                },
+                {
+                    "amount": 210,
+                    "ingredient name": "Flour"
+                },
+                {
+                    "amount": 2,
+                    "ingredient name": "Baking soda"
+                },
+                {
+                    "amount": 150,
+                    "ingredient name": "Chocolate chips"
+                }
+            ],
+            "descriptions": [
+                {"description": "Cream the butter and sugar together in a bowl."},
+                {"description": "Add the eggs and vanilla to butter mixture. Whisk until smooth."},
+                {"description": "Add flour, baking soda, and salt. Fold gently until fully incorporated."},
+                {"description": "Add chocolate chips. Fold just until fully combined."},
+                {"description": "Chill dough for an hour then place cookies in oven preheated to 350F."}
+            ]
+        },
+        {
+            "recipe name": "Brownies",
+            "ingredients": [
+                {
+                    "amount": 50,
+                    "ingredient name": "Sugar"
+                },
+                {
+                    "amount": 150,
+                    "ingredient name": "Flour"
+                },
+                {
+                    "amount": 60,
+                    "ingredient name": "Butter"
+                },
+                {
+                    "amount": 25,
+                    "ingredient name": "Brown sugar"
+                },
+                {
+                    "amount": 50,
+                    "ingredient name": "Eggs"
+                }
+            ],
+            "descriptions": [
+                {"description": "Preheat oven to 350F"},
+                {"description": "Add flour, sugar, and brown sugar to bowl"},
+                {"description": "Melt butter in microwave"},
+                {"description": "Add eggs and butter to flour mixture"},
+                {"description": "Mix until fully incorporated"}
+            ]
+        }
+    ],
+    "name": "My recipes"
+}

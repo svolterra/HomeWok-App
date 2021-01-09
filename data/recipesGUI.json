@@ -1,0 +1,53 @@
+{
+    "recipes": [
+        {
+            "recipe name": "Cookies",
+            "ingredients": [
+                {
+                    "amount": 50,
+                    "ingredient name": "Flour"
+                },
+                {
+                    "amount": 50,
+                    "ingredient name": "Sugar"
+                },
+                {
+                    "amount": 25,
+                    "ingredient name": "Eggs"
+                }
+            ],
+            "descriptions": [
+                {"description": "Preheat oven to 350F"},
+                {"description": "Add sugar to bowl"},
+                {"description": "Place in oven for 30 minutes"}
+            ]
+        },
+        {
+            "recipe name": "Brownies",
+            "ingredients": [
+                {
+                    "amount": 50,
+                    "ingredient name": "Flour"
+                },
+                {
+                    "amount": 50,
+                    "ingredient name": "Cocoa powder"
+                },
+                {
+                    "amount": 50,
+                    "ingredient name": "Eggs"
+                },
+                {
+                    "amount": 50,
+                    "ingredient name": "Butter"
+                }
+            ],
+            "descriptions": [
+                {"description": "Preheat oven to 350F"},
+                {"description": "Add wet ingredients to dry ingredients"},
+                {"description": "Place in oven"}
+            ]
+        }
+    ],
+    "name": "My recipes"
+}

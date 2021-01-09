@@ -1,0 +1,27 @@
+{
+    "recipes": [
+        {
+            "recipe name": "Cookies",
+            "ingredients": [
+                {
+                    "amount": 100,
+                    "ingredient name": "Flour"
+                },
+                {
+                    "amount": 50,
+                    "ingredient name": "Sugar"
+                }
+            ],
+            "descriptions": [{"description": "Add sugar to bowl"}]
+        },
+        {
+            "recipe name": "Brownies",
+            "ingredients": [{
+                "amount": 50,
+                "ingredient name": "Sugar"
+            }],
+            "descriptions": [{"description": "Add sugar"}]
+        }
+    ],
+    "name": "My recipes"
+}
