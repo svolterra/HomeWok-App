@@ -15,7 +15,7 @@ import java.io.PrintWriter;
 
 
 //NOTE: Class modeled based on: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
-// Represents a writer that writes JSON representation of a recipe book to file
+// Represents a writer that writes JSON representation of recipe book to file
 public class JsonWriter {
     private static final int TAB = 4;
     private PrintWriter writer;
