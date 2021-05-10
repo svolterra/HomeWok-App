@@ -100,6 +100,7 @@ public class RecipeBook implements Writable {
         return recipes.get(i);
     }
 
+    //EFFECTS: converts RecipeBook to JSON object to achieve data persistence
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
