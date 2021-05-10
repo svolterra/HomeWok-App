@@ -517,7 +517,8 @@ public class HomeWokAppGUI extends JFrame implements ActionListener {
 
     // EFFECTS: runs the HomeWok application graphical user interface
     public static void main(String[] args) {
-        new HomeWokAppGUI();
+//        new HomeWokAppGUI();
+        new HomeWokApp();
     }
 
 }
