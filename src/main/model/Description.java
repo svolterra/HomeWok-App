@@ -23,6 +23,7 @@ public class Description implements Writable {
     }
 
 
+    //EFFECTS: converts description to JSON object for data persistence
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
