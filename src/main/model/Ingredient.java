@@ -28,6 +28,7 @@ public class Ingredient implements Writable {
         return amount;
     }
 
+   //EFFECTS: converts ingredient to JSON object for data persistence
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
